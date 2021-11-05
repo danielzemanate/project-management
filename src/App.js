@@ -1,22 +1,23 @@
 // import logo from './logo.svg';
 import 'styles/styles.css'
-import { BrowserRouter,Routes,Route } from 'react-router-dom';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Home from 'pages/Home';
 import Users from 'pages/Users';
+import PublicLayout from 'layouts/PublicLayout';
 
 function App() {
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<Home />}/>
-        <Route path="/users" element={<Users />}/>
-      </Routes>
-    </BrowserRouter>
-    // <div className="App">
-    //   <div className='bg-indigo-500'>
-    //     <p>HOLA MUNDO</p>
-    //   </div>
-    // </div>
+    <div className='App'>
+      <BrowserRouter>
+        <PublicLayout>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/users" element={<Users />} />
+          </Routes>
+        </PublicLayout>
+      </BrowserRouter>
+    </div>
+
   );
 }
 

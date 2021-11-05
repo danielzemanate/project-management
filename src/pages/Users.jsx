@@ -3,6 +3,11 @@ import React from 'react'
 const Users = () => {
     return (
         <div>
+            <header className="bg-white shadow">
+                <div className="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
+                    <h1 className="text-3xl font-bold text-gray-900">ABOUT US</h1>
+                </div>
+            </header>
             <div className="flex flex-wrap items-center pt-8">
                 <div className="w-full md:w-6/12 px-4 mr-auto ml-auto ">
                     <div className="justify-center flex flex-wrap relative">
@@ -93,23 +98,12 @@ const Users = () => {
                             Tooltips
                         </span>
                     </div>
-                    <a href="https://www.creative-tim.com/learning-lab/tailwind/js/alerts/notus?ref=njs-index" target="_blank" className="font-bold text-blueGray-700 hover:text-blueGray-500 ease-linear transition-all duration-150" rel='noreferrer'>
+                    <a href="/" target="_blank" className="font-bold text-blueGray-700 hover:text-blueGray-500 ease-linear transition-all duration-150" rel='noreferrer'>
                         View all
                         <i className="fa fa-angle-double-right ml-1 leading-relaxed"></i>
                     </a>
                 </div>
             </div>
-            <footer className="relative pt-8 pb-6 mt-8">
-                <div className="container mx-auto px-4">
-                    <div className="flex flex-wrap items-center md:justify-between justify-center">
-                        <div className="w-full md:w-6/12 px-4 mx-auto text-center">
-                            <div className="text-sm text-blueGray-500 font-semibold py-1">
-                                Made with <a href="https://www.creative-tim.com/product/notus-js" className="text-blueGray-500 hover:text-gray-800" target="_blank" rel='noreferrer'>Notus JS</a> by <a href="https://www.creative-tim.com" className="text-blueGray-500 hover:text-blueGray-800" target="_blank" rel='noreferrer'> Creative Tim</a>.
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </footer>
         </div>
     )
 }

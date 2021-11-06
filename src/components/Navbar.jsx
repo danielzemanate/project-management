@@ -38,7 +38,7 @@ const Navbar = () => {
 
                     </div>
                     <div>
-                        <button type='button' className="inline-block text-sm px-4 py-2 leading-none border rounded text-white border-white hover:border-transparent hover:text-indigo-500 hover:bg-white mt-4 lg:mt-0">Login</button>
+                        <button type='button' className="inline-block px-4 py-2 leading-none rounded text-white  border-2 border-transparent hover:text-white hover:bg-indigo-700 bg-indigo-600 mt-4 lg:mt-0 text-lg font-bold transition duration-900 ease-in-out transform hover:-translate-y-1 hover:scale-110">Login</button>
                     </div>
                 </div>
             ) : <div className="w-full flex-grow lg:flex lg:items-center lg:w-auto ml-10 hidden md:hidden text-lg">

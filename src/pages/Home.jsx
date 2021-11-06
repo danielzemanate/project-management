@@ -37,7 +37,7 @@ const Home = () => {
                                     faster. You can change the text and images and you're good to
                                     go. Just make sure you enable them first via JavaScript.
                                 </p>
-                                <button className="bg-transparent hover:bg-indigo-500 text-indigo-700 font-semibold hover:text-white py-2 px-4 border-2 border-indigo-500 hover:border-transparent rounded-full transition duration-900 ease-in-out transform hover:-translate-y-1 hover:scale-110">
+                                <button className="bg-transparent hover:bg-indigo-500 text-indigo-700 font-semibold hover:text-white py-2 px-4 border-2 border-indigo-500 hover:border-transparent rounded-full transition duration-900 ease-in-out transform hover:-translate-y-1 hover:scale-110 mb-4">
                                     Solicita un Demo
                                 </button>
                             </div>
@@ -45,10 +45,6 @@ const Home = () => {
                                 <div className="relative flex flex-col min-w-0 break-words w-full mb-2 shadow-lg rounded-lg bg-green-600">
                                     <img alt="..." src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=crop&amp;w=1051&amp;q=80" className="w-full align-middle rounded-t-lg" />
                                     <blockquote className="relative p-8 mb-4">
-                                        {/* <svg preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 583 95" className="absolute left-0 w-full block h-95-px -top-94-px"> */}
-                                        {/* <polygon points="-30,95 583,95 583,65" className="text-indigo-500 fill-current"></polygon> */}
-                                        {/* </svg> */}
-
                                         <h4 className="text-3xl font-bold text-white">
                                             Top Notch Services
                                         </h4>

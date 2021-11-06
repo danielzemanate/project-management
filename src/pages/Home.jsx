@@ -25,14 +25,14 @@ const Home = () => {
                                     <i className="fas fa-project-diagram text-4xl text-green-700"></i>
                                 </div>
                                 <h3 className="text-5xl text-indigo-900 mb-2 font-semibold leading-tight">
-                                    Software para la gestión de proyectos administrativos
+                                    Software para la gestión de proyectos
                                 </h3>
-                                <p className="text-lg font-normal leading-relaxed mt-4 mb-4 text-gray-900">
+                                <p className="text-lg font-normal leading-relaxed mt-4 mb-4 text-gray-900 text-justify">
                                     Don't let your uses guess by attaching tooltips and popoves to
                                     any element. Just make sure you enable them first via
                                     JavaScript.
                                 </p>
-                                <p className="text-lg font-normal leading-relaxed mt-0 mb-4 text-gray-900">
+                                <p className="text-lg font-normal leading-relaxed mt-0 mb-4 text-gray-900 text-justify">
                                     The kit comes with three pre-built pages to help you get started
                                     faster. You can change the text and images and you're good to
                                     go. Just make sure you enable them first via JavaScript.
@@ -48,8 +48,8 @@ const Home = () => {
                                         <h4 className="text-3xl font-bold text-white">
                                             Top Notch Services
                                         </h4>
-                                        <p className="text-lg font-normal mt-2 text-white leading-tight text-justify">
-                                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Assumenda, quia temporibus eveniet a libero incidunt suscipit laborum, rerum accusantium modi quidem, ipsam illum quis sed voluptatum quae eum fugit earum
+                                        <p className="text-xl font-normal mt-2 text-white leading-tight text-justify">
+                                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Assumenda, quia temporibus eveniet a libero incidunt suscipit laborum, rerum accusantium modi voluptatum quae eum fugit earum quidem, ipsam illum quis sed voluptatum quae eum fugit earum
                                         </p>
                                     </blockquote>
                                 </div>

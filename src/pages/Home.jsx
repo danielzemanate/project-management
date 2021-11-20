@@ -37,7 +37,7 @@ const Home = () => {
                                     faster. You can change the text and images and you're good to
                                     go. Just make sure you enable them first via JavaScript.
                                 </p>
-                                <button className="bg-transparent hover:bg-indigo-500 text-indigo-700 font-semibold hover:text-white py-2 px-4 border-2 border-indigo-500 hover:border-transparent rounded-full transition duration-900 ease-in-out transform hover:-translate-y-1 hover:scale-110 mb-4">
+                                <button className="text-indigo-700 font-semibold hover:text-white py-2 px-4 border-2 border-indigo-500 hover:border-transparent rounded-full hover:bg-indigo-600 transition duration-900 ease-in-out transform hover:-translate-y-1 hover:scale-110   mb-4">
                                     Solicita un Demo
                                 </button>
                             </div>

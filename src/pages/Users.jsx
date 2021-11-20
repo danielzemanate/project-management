@@ -98,7 +98,7 @@ const Users = () => {
                             Tooltips
                         </span>
                     </div>
-                    <button className="bg-transparent hover:bg-indigo-500 text-indigo-700 font-semibold hover:text-white py-2 px-4 border-2 border-indigo-500 hover:border-transparent rounded-full transition duration-900 ease-in-out transform hover:-translate-y-1 hover:scale-110">
+                    <button className="hover:bg-indigo-500 text-indigo-700 font-semibold hover:text-white py-2 px-4 border-2 border-indigo-500 hover:border-transparent rounded-full transition duration-900 ease-in-out transform hover:-translate-y-1 hover:scale-110">
                         View Allº
                     </button>
                 </div>

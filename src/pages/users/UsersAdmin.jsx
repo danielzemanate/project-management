@@ -59,6 +59,7 @@ const UsersAdmin = () => {
             })}
         </tbody>
       </table>
+      <button type="submit" className="btn btn-lg btn-primary" disabled={true}>Primary button</button>
     </div>
   );
 };

@@ -46,7 +46,7 @@ const NavbarPrivateLayout = () => {
           <Nav className="ms-auto" navbar>
           <img width="60" className="px-1 rounded-circle" src={user}  alt=""/>
             <UncontrolledDropdown nav inNavbar>
-              <DropdownToggle nav caret>
+              <DropdownToggle className='text-lg font-semibold' nav caret>
                 DANIEL
               </DropdownToggle>
               <DropdownMenu right>

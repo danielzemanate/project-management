@@ -15,6 +15,9 @@ import PrivateLayout from "layouts/PrivateLayout";
 import LandingAdmin from "pages/admin/LandingAdmin";
 import UsersAdmin from "pages/users/UsersAdmin";
 import EditUsers from "pages/users/EditUsers";
+import Projects from "pages/projects/Projects";
+import Inscriptions from "pages/inscriptions/Inscriptions";
+
 
 function App() {
   // CREATE HHTPLINK FROM QUERYS
@@ -35,9 +38,11 @@ function App() {
           {/* RUTAS PRIVADAS */}
             <PrivateLayout>
               <Routes>
-                <Route path="/landingAdmin" element={<LandingAdmin />} />
+                <Route path="/" element={<LandingAdmin />} />
                 <Route path="/users" element={<UsersAdmin />} />
                 <Route path="/users/edit/:_id" element={<EditUsers />} />
+                <Route path="/projects" element={<Projects />} />
+                <Route path="/inscriptions" element={<Inscriptions />} />
               </Routes>
             </PrivateLayout>
           {/* RUTAS PUBLICAS */}

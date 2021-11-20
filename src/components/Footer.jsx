@@ -1,9 +1,9 @@
-import { React, useState } from 'react'
+import { React } from 'react'
 import { Link } from 'react-router-dom';
 import Logo from 'assets/images/dev.jpeg'
 
 const Footer = () => {
-    const [mode, setMode] = useState("auto");
+    // const [mode, setMode] = useState("auto");
 
     return (
         <div className="pt-12 sticky">
@@ -100,7 +100,7 @@ const Footer = () => {
                                             </svg>
                                         </div>
                                     </div>
-                                    <div className="relative w-36">
+                                    {/* <div className="relative w-36">
                                         {mode === "auto" && (
                                             <svg xmlns="http://www.w3.org/2000/svg" className="absolute inset-0 m-auto ml-3 text-gray-700 dark:text-gray-50 icon icon-tabler icon-tabler-device-laptop" width={20} height={20} viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" fill="none" strokeLinecap="round" strokeLinejoin="round">
                                                 <path stroke="none" d="M0 0h24v24H0z" fill="none" />
@@ -138,7 +138,7 @@ const Footer = () => {
                                             <option value="light">Light</option>
                                             <option value="dark">Dark</option>
                                         </select>
-                                    </div>
+                                    </div> */}
                                 </div>
                             </div>
                         </div>

@@ -18,11 +18,11 @@ const Navbar = () => {
                 <img className="fill-current h-10 w-10 mr-2" width="54" height="54" src={Logo} alt='' />
                 <span className="font-semibold text-2xl tracking-tight ml-3 cursor-pointer">▽ A D A N Z  🇨🇴 </span>
             </div></Link>
-            <div className="block lg:hidden">
-                <button className="flex items-center px-3 py-2 border rounded text-indigo-100 border-indigo-400 hover:text-white hover:border-white" onClick={() => { setShowNavigaion(!showNavigation); }}>
+            <div className="block lg:hidden" onClick={() => { setShowNavigaion(!showNavigation); }}>
+                <button className="flex items-center px-3 py-2 border rounded text-white border-indigo-400 ">
                     <i
                         className={`mx-2 fas fa-${showNavigation ? 'times' : 'bars'
-                            } hover:text-yellow-600 cursor-pointer`}
+                            }  cursor-pointer`}
                     />
                 </button>
             </div>

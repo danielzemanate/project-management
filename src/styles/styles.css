@@ -37,7 +37,7 @@
 }
 
 .iconSidebar:hover {
-    color: #0f6dfa;
+    color: #7d211d;
 }
 ul {
     list-style: none;
@@ -104,6 +104,22 @@ ul {
   .tabla tr:hover {
     background-color: #ddd;
   }
+  @media (max-width: 900px) {
+    .tableResponsive {
+        display:none
+    }
+    .divCardsTable {
+        display:flex;
+        flex-direction: column;
+        width: 100%;
+    }
+}
+
+@media (min-width: 900px) {
+    .divCardsTable {
+        display:none;
+    }
+}
 
   /* INPUT */
   .input {

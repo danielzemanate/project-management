@@ -40,7 +40,7 @@ const Logo = () => {
 const SidebarRoute = ({ruta,nombre,icon}) => {
     return(
         <li>
-        <NavLink exact='true' className='link text-dark w-100 py-3 px-3 rounded d-inline-block'  to={ruta}><i className={`${icon} me-2`}/>{nombre}</NavLink>
+        <NavLink exact='true' className='link text-dark w-100 py-3 px-2 rounded d-inline-block'  to={ruta}><i className={`${icon} me-2`}/>{nombre}</NavLink>
     </li> 
     )
 }

@@ -3,12 +3,13 @@ import { SidebarPrivateLayout } from "components/SidebarPrivateLayout";
 import NavbarPrivateLayout from "components/NavbarPrivateLayout";
 import { ToastContainer } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
+import SidebarResponsive from "components/SidebarResponsivePl";
 
 const PrivateLayout = ({ children }) => {
   return (
     <div className="flex">
       <SidebarPrivateLayout />
-      {/* <SidebarResponsive/> */}
+      <SidebarResponsive/>
       <div className="content w-100">
         <NavbarPrivateLayout />
         <main>{children}</main>

@@ -1,15 +1,15 @@
 
 // const colors = require('tailwindcss/colors')
-const defaultTheme = require('tailwindcss/defaultTheme')
+// const defaultTheme = require('tailwindcss/defaultTheme')
 module.exports = {
   purge: ['./src/**/*.{js,jsx,ts,tsx}', './public/index.html'],
   darkMode: false, // or 'media' or 'class'
   theme: {
-    screens: {
-      'xs': '260px',
+    // screens: {
+    //   'xs': '260px',
     //   'xs1': '475px',
-      ...defaultTheme.screens,
-    },
+    //   ...defaultTheme.screens,
+    // },
     // colors: {
     //   // Build your palette here
     //   transparent: 'transparent',

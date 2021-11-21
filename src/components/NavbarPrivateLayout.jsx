@@ -42,7 +42,7 @@ const NavbarPrivateLayout = () => {
             {/* <img width="90" className="px-2 d-inline-block " src={logo} alt=""/> */}
             <h3 className='text-red-900'>GESTIÓN DE PROYECTOS</h3>
         </NavbarBrand>
-        <NavbarBrand className="navbar-Brand hidden md:hidden sm:flex xs:flex text-2xl mb-2 font-semibold leading-tight" href="/">
+        <NavbarBrand className="navbar-Brand flex md:hidden text-2xl mb-2 font-semibold leading-tight" href="/">
             {/* <img width="90" className="px-2 d-inline-block " src={logo} alt=""/> */}
             <h1 className='text-red-900'>GESTIÓN DE PROYECTOS</h1>
         </NavbarBrand>

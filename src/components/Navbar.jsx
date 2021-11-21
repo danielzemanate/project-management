@@ -37,9 +37,9 @@ const Navbar = () => {
                         ))}
 
                     </div>
-                    <div>
+                    <Link to='/admin/landingAdmin'>
                         <button type='button' className="inline-block px-4 py-2 leading-none rounded text-white  border-2 border-transparent hover:text-white hover:bg-indigo-700 bg-indigo-600 mt-4 lg:mt-0 text-lg font-bold transition duration-900 ease-in-out transform hover:-translate-y-1 hover:scale-110">Login</button>
-                    </div>
+                    </Link>
                 </div>
             ) : <div className="w-full flex-grow lg:flex lg:items-center lg:w-auto ml-10 hidden md:hidden text-lg">
                 <div className="text-md lg:flex-grow">

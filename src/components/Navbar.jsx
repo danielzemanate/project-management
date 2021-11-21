@@ -16,7 +16,7 @@ const Navbar = () => {
         <nav className="flex items-center justify-between flex-wrap  bg-gray-800 p-6">
             <Link to='/'><div className="flex items-center flex-shrink-0 text-white mr-6 transition duration-500 ease-in-out transform hover:-translate-y-1 hover:scale-110">
                 <img className="fill-current h-10 w-10 mr-2" width="54" height="54" src={Logo} alt='' />
-                <span className="font-semibold text-2xl tracking-tight ml-3 cursor-pointer">▽ A D A N Z  🇨🇴 </span>
+                <span className="font-semibold text-2xl tracking-tight ml-3 cursor-pointer">▽ E V A N Z  🇨🇴 </span>
             </div></Link>
             <div className="block lg:hidden" onClick={() => { setShowNavigaion(!showNavigation); }}>
                 <button className="flex items-center px-3 py-2 border rounded text-white border-indigo-400 ">

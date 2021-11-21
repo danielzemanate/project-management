@@ -30,9 +30,9 @@ const EditUsers = () => {
     const submitForm = (e) => {
         e.preventDefault();
         // console.log('fd', formData);
-        // delete formData.rol;
+        delete formData.rol;
         editarUsuario({
-          variables: { _id, ...formData,  rol:'ADMINISTRADOR', },
+          variables: { _id, ...formData },
         });
       };
 

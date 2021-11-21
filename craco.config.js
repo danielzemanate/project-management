@@ -1,4 +1,6 @@
 // craco.config.js
+const CracoAlias = require('craco-alias');
+
 module.exports = {
     style: {
       postcss: {
@@ -8,4 +10,16 @@ module.exports = {
         ],
       },
     },
+    plugins: [
+      {
+        plugin: CracoAlias,
+        options: {
+          source: 'options',
+          baseUrl: './',
+          aliases: {
+            '*': './src',
+          },
+        },
+      },
+    ],
   }

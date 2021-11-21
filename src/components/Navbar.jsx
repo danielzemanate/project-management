@@ -8,7 +8,7 @@ const Navbar = () => {
     //AGREGAR RUTAS NUEVAS, SU NOMBRE PARA EL NAVBAR
     const routeNavbar = [
         { route: "/", name: 'Home' },
-        { route: "/users", name: 'About Us' },
+        { route: "/aboutUs", name: 'About Us' },
         { route: "/", name: 'Services' },
         { route: "/", name: 'Contact' },
     ]
@@ -50,9 +50,9 @@ const Navbar = () => {
                     ))}
 
                 </div>
-                <div>
+                <Link to='/admin/landingAdmin'>
                     <button type='button' className="inline-block px-4 py-2 leading-none rounded-full text-white border-indigo-500 border-2 hover:border-transparent hover:text-white hover:bg-indigo-600 mt-4 lg:mt-0 text-lg font-bold transition duration-900 ease-in-out transform hover:-translate-y-1 hover:scale-110">Login</button>
-                </div>
+                </Link>
             </div>}
         </nav>
     )

@@ -10,7 +10,8 @@ import {
   DropdownToggle,
   DropdownMenu,
   DropdownItem,
-} from 'reactstrap';
+} from 'reactstrap'
+import { Link } from 'react-router-dom';
 
 // import logo from 'assets/images/logo1.png'
 import user from 'assets/images/user.png'
@@ -61,9 +62,11 @@ const NavbarPrivateLayout = () => {
                   Configuraciones
                 </DropdownItem>
                 <DropdownItem divider />
-                <DropdownItem onClick={() => cerrarSesion()}>
-                  Cerrar Sesión
-                </DropdownItem>
+                <Link to='/'>
+                  <DropdownItem onClick={() => cerrarSesion()}>
+                    Cerrar Sesión
+                  </DropdownItem>
+                </Link>
               </DropdownMenu>
             </UncontrolledDropdown>
           </Nav>

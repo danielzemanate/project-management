@@ -1,16 +1,13 @@
 import Footer from 'components/Footer'
 import Navbar from 'components/Navbar'
 import React from 'react'
+import { Outlet } from 'react-router';
 
-const PublicLayout = ({ children }) => {
+const PublicLayout = () => {
     return (
         <div>
             <Navbar />
-            <main>
-                <div>
-                    {children}
-                </div>
-            </main>
+            <Outlet />
             <Footer/>
             <div className="fixed bottom-0 right-0 mb-4 mr-4 z-10">
                 <div>

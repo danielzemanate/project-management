@@ -16,10 +16,10 @@ const SidebarResponsive = () => {
 
   //AGREGAR RUTAS NUEVAS, SU NOMBRE E ICONO PARA EL SIDEBAR
   const routeSidebar = [
-    { ruta: "/users", nombre: "Usuarios", icon: "fas fa-users" },
-    { ruta: "/projects", nombre: "Proyectos", icon: "fas fa-list" },
+    { ruta: "/admin/users", nombre: "Usuarios", icon: "fas fa-users" },
+    { ruta: "/admin/projects", nombre: "Proyectos", icon: "fas fa-list" },
     {
-      ruta: "/inscriptions",
+      ruta: "/admin/inscriptions",
       nombre: "Inscripciones",
       icon: "fas fa-user-plus",
     },

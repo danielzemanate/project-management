@@ -3,14 +3,15 @@ import ReactLoading from "react-loading";
 import { useQuery } from "@apollo/client";
 import { GET_USUARIOS } from "graphql/users/queries";
 import { toast } from "react-toastify";
-import { Link } from "react-router-dom";
+import { Link } from "react-router-dom"
+import { Enum_Rol, Enum_EstadoUsuario } from "utils/enum";
 
 const UsersAdmin = () => {
   const { data, error, loading } = useQuery(GET_USUARIOS);
 
-  //   useEffect(() => {
-  //     console.log("data servidor", data);
-  //   }, [data]);
+    // useEffect(() => {
+    //   console.log("data servidor", data);
+    // }, [data]);
 
   useEffect(() => {
     if (error) {
@@ -31,7 +32,6 @@ const UsersAdmin = () => {
     );
 
   return (
-    <>
     <div className="m-4">
       <div className='flex justify-center'>
         <span className="text-4xl m-3 font-semibold">
@@ -59,12 +59,12 @@ const UsersAdmin = () => {
                   <td>{u.apellido}</td>
                   <td>{u.correo}</td>
                   <td>{u.identificacion}</td>
-                  <td>{u.rol}</td>
-                  <td>{u.estado}</td>
-                  {/* <td>{Enum_Rol[u.rol]}</td>
-                  <td>{Enum_EstadoUsuario[u.estado]}</td> */}
+                  {/* <td>{u.rol}</td>
+                  <td>{u.estado}</td> */}
+                  <td>{Enum_Rol[u.rol]}</td>
+                  <td>{Enum_EstadoUsuario[u.estado]}</td>
                   <td>
-                    <Link to={`/users/edit/${u._id}`}>
+                    <Link to={`/admin/users/edit/${u._id}`}>
                       <i className="fas fa-pen text-yellow-600 hover:text-yellow-400 cursor-pointer" />
                     </Link>
                   </td>
@@ -94,7 +94,6 @@ const UsersAdmin = () => {
         })}
       </div>
     </div>
-    </>
   );
 };
 

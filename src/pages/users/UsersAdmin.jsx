@@ -85,7 +85,7 @@ const UsersAdmin = () => {
                     <p className="card-text"><b>Email:</b> {u.correo}</p>
                     <p className="card-text"><b>Rol:</b> {u.rol}</p>
                     <p className="card-text"><b>Estado:</b> {u.estado}</p>   
-                    <Link className='flex mt-2' to={`/users/edit/${u._id}`}>
+                    <Link className='flex mt-2' to={`/admin/users/edit/${u._id}`}>
                       <button className='bg-red-700 text-white font-bold text-xl py-2 px-1 rounded-xl hover:bg-red-500 shadow-md my-1'>EDITAR</button>
                     </Link> 
                 </div>

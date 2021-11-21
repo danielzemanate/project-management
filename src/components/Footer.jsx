@@ -7,7 +7,7 @@ const Footer = () => {
 
     return (
         <div className="pt-12 sticky">
-            <footer id="footer" className="relative z-50 dark:bg-gray-900 bg-gray-100">
+            <footer id="footer" className=" z-50 dark:bg-gray-900 bg-gray-100">
                 <div className=" border-t-2 border-b-2 border-gray-300 dark:border-gray-700 py-16">
                     <div className="mx-auto container px-4 xl:px-12 2xl:px-4">
                         <div className="lg:flex">

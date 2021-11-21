@@ -47,7 +47,7 @@ const SidebarResponsive = () => {
           ))}
         </ul>
       )}
-      <Logo styles={`py-3 w-full ${showNavigation ? "xs:flex" : "xs:hidden xs1:hidden"} flex-col items-center justify-center`} />
+      <Logo styles={`py-3 w-full ${showNavigation ? "sm:flex" : "sm:hidden xs:hidden"} flex-col items-center justify-center`} />
     </div>
   );
 };

@@ -12,7 +12,6 @@ export const SidebarPrivateLayout = () => {
     {ruta:"/admin/inscriptions", nombre:"Inscripciones", icon:"fas fa-user-plus"},
     ]
     return (
-
             <div className='sidebarPl bg-light'>
                 <Logo/>
                 <ul>

@@ -12,7 +12,7 @@ export const SidebarPrivateLayout = () => {
     {ruta:"/admin/inscriptions", nombre:"Inscripciones", icon:"fas fa-user-plus"},
     ]
     return (
-            <div className=' sidebarPl shadow-md'>
+            <div className='sidebarPl shadow-md'>
                 <Logo/>
                 <ul>
                     {/* SE RENDERIZA CADA UNO DE LOS COMPONENTES DEL SIDEBAR */}
@@ -29,7 +29,7 @@ export const SidebarPrivateLayout = () => {
 // LOGO PARA SIDEBAR
 const Logo = () => {
   return (
-    <div className='py-3 w-full flex flex-col items-center justify-center'>
+    <div className='py-5 w-full flex flex-col items-center justify-center'>
       <img src={logo_evanz} alt='Logo' className='h-28' />
       {/* <span className='my-2 text-xl font-bold text-center'>Título de Mi Aplicación</span> */}
     </div>

@@ -12,7 +12,7 @@ export const SidebarPrivateLayout = () => {
     {ruta:"/admin/inscriptions", nombre:"Inscripciones", icon:"fas fa-user-plus"},
     ]
     return (
-            <div className='sidebarPl bg-light'>
+            <div className=' sidebarPl shadow-md'>
                 <Logo/>
                 <ul>
                     {/* SE RENDERIZA CADA UNO DE LOS COMPONENTES DEL SIDEBAR */}
@@ -30,7 +30,7 @@ export const SidebarPrivateLayout = () => {
 const Logo = () => {
   return (
     <div className='py-3 w-full flex flex-col items-center justify-center'>
-      <img src={logo_evanz} alt='Logo' className='h-16' />
+      <img src={logo_evanz} alt='Logo' className='h-28' />
       {/* <span className='my-2 text-xl font-bold text-center'>Título de Mi Aplicación</span> */}
     </div>
   );
@@ -39,7 +39,11 @@ const Logo = () => {
 const SidebarRoute = ({ruta,nombre,icon}) => {
     return(
         <li>
-        <NavLink exact='true' className='link text-dark w-100 py-3 px-2 rounded d-inline-block'  to={ruta}><i className={`${icon} me-2`}/>{nombre}</NavLink>
+        <NavLink  className={({ isActive }) =>
+          isActive
+            ? 'sidebar-route sidebarActive text-white text-xl font-medium'
+            : 'sidebar-route sidebarNoActive text-gray-900 text-xl hover:text-white '
+        }  to={ruta}>{nombre}<i className={`${icon}`}/></NavLink>
     </li> 
     )
 }

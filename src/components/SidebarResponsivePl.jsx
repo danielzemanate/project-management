@@ -1,11 +1,11 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
-import useActiveRoute from "hooks/useActiveRoute";
+import { NavLink } from 'react-router-dom'
+// import useActiveRoute from "hooks/useActiveRoute";
 import logo_evanz from "assets/images/logo_evanz.png";
 
 const SidebarResponsive = () => {
   // LOGO PARA SIDEBAR
-  const Logo = ({styles}) => {
+  const Logo = ({ styles }) => {
     return (
       <div className={styles}>
         <img src={logo_evanz} alt="Logo" className="h-14" />
@@ -28,12 +28,16 @@ const SidebarResponsive = () => {
   return (
     //   SIDEBAR PARA PANTALLAS PEQUEÑAS-MOVILES
     <div
-      className="iconSidebar"
+      className="iconSidebar bg-white shadow-md"
       onClick={() => {
         setShowNavigation(!showNavigation);
       }}
     >
-      <i className={`fas fa-${showNavigation ? "times" : "bars"} fa-2x py-3 px-1`} />
+      <i
+        className={`fas fa-${
+          showNavigation ? "times" : "bars"
+        } fa-2x py-3 px-1`}
+      />
       {showNavigation && (
         <ul>
           {/* SE RENDERIZA CADA UNO DE LOS COMPONENTES DEL SIDEBAR */}
@@ -47,23 +51,31 @@ const SidebarResponsive = () => {
           ))}
         </ul>
       )}
-      <Logo styles={`py-3 w-full ${showNavigation ? "flex" : "hidden"} flex-col items-center justify-center`} />
+      <Logo
+        styles={`py-3 w-full ${
+          showNavigation ? "flex" : "hidden"
+        } flex-col items-center justify-center`}
+      />
     </div>
   );
 };
 
 const ResponsiveRoute = ({ ruta, nombre, icon }) => {
-  const isActive = useActiveRoute(ruta);
+  // const isActive = useActiveRoute(ruta);
   return (
-    <Link
-      className={` ${
-        isActive ? "active" : "link"
-      } text-xl text-dark w-100 rounded d-flex justify-content-center my-3`}
-      to={ruta}
-    >
-      {/* <li><i className={`${icon} me-2 `}/>{nombre}</li> */}
-      <li>{nombre}</li>
-    </Link>
+    <li>
+      <NavLink
+        className={({ isActive }) =>
+          isActive
+            ? "sidebar-route sidebarActive text-white text-lg font-medium "
+            : "sidebar-route sidebarNoActive text-gray-900 text-lg hover:text-white "
+        }
+        to={ruta}
+      >
+        {nombre}
+        <i className={`${icon}`} />
+      </NavLink>
+    </li>
   );
 };
 

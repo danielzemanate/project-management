@@ -32,9 +32,9 @@ const UsersAdmin = () => {
     );
 
   return (
-    <div className="m-4">
+    <div className="ml-5 mr-7">
       <div className='flex justify-center'>
-        <span className="text-4xl m-3 font-semibold">
+        <span className="text-4xl m-3 text-gray-800 font-semibold">
           USUARIOS REGISTRADOS
         </span>
       </div>
@@ -65,7 +65,7 @@ const UsersAdmin = () => {
                   <td>{Enum_EstadoUsuario[u.estado]}</td>
                   <td>
                     <Link to={`/admin/users/edit/${u._id}`}>
-                      <i className="fas fa-pen text-yellow-600 hover:text-yellow-400 cursor-pointer" />
+                      <i className="fas fa-pen text-red-900 hover:textred-700 cursor-pointer" />
                     </Link>
                   </td>
                 </tr>

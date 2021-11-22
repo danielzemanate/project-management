@@ -151,7 +151,7 @@ const Footer = () => {
                             <span className="font-semibold text-xl tracking-tight ml-3">▽ E V A N Z  🇨🇴 </span>
                         </div>
                     </Link>
-                    <p className="mt-6 text-xs lg:text-sm leading-none text-gray-900 dark:text-gray-50">2021 ▽ A D A N Z  🇨🇴 . All Rights Reserved.</p>
+                    <p className="mt-6 text-xs lg:text-sm leading-none text-gray-900 dark:text-gray-50">2021 ▽ E V A N Z  🇨🇴 . All Rights Reserved.</p>
                 </div>
             </footer>
         </div>

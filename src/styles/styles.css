@@ -5,11 +5,24 @@
 /* SIDEBAR PRIVATE LAYOUT */
 @import url('https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
+.sidebar-route {
+    @apply rounded-lg flex w-full justify-between cursor-pointer items-center m-3 p-3;
+  }
+
+.sidebarActive {
+    background-color: #B3453F;
+}
+
+.sidebarNoActive:hover {
+    background-color: #C26A65;
+}
+
 .sidebarPl {
-    width: 18rem;
-    height: calc(150vh - 52px);
+    width: 24rem;
+    height: calc(160vh - 62px);
     font-family: 'Rubik', sans-serif;
-    border-right: 1px solid #e7e9eb;
+    /* box-shadow: -15px 0px 0px -15px inset; */
+    border-right: 2px solid #e7e9eb;
 }
 
 .link {
@@ -34,6 +47,12 @@
 
 .content {
     width: max-content;
+}
+
+.iconSidebar {
+    height: calc(150vh - 52px);
+    /* box-shadow: -15px 0 15px -15px inset; */
+    border-right: 2px solid #e7e9eb;
 }
 
 .iconSidebar:hover {
@@ -63,7 +82,7 @@ ul {
         display: none;
     } 
     .sidebarPl {
-        width: 18rem;
+        width: 24rem;
     }   
 }
 
@@ -74,6 +93,12 @@ ul {
     font-weight: 600;
     font-size: 25px;
     font-family: 'Rubik', sans-serif;
+}
+
+.navbarPl {
+    background-color: #653532;
+    box-shadow: 2px 0px 15px black; 
+    /* box-shadow: horizontal vertical suavidad que tendrá la sombra (a menor valor más duro será el borde de la sombra). */
 }
 
 /* TABLA */
@@ -90,7 +115,7 @@ ul {
   }
   
   .tabla th {
-    background-color: #7d211d;
+    background-color: #B3453F;
     color: white;
     padding-top: 12px;
     padding-bottom: 12px;
@@ -124,4 +149,8 @@ ul {
   /* INPUT */
   .input {
     @apply p-2 border border-red-900 focus:outline-none focus:border-red-800 rounded-md shadow-sm;
+  }
+
+  .usersAdmin {
+      background-color: #EDE9E4;
   }

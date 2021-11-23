@@ -56,15 +56,15 @@ const SidebarRoute = ({ruta,nombre,icon, iconInactive}) => {
         <NavLink className={({ isActive }) => 
         
           isActive
-            ? 'sidebar-route sidebarActive text-white text-xl font-medium'
-            : 'sidebar-route sidebarNoActive text-red-900 text-xl hover:text-white '
+            ? 'sidebar-route sidebarActive text-white md:text-lg lg:text-xl font-medium'
+            : 'sidebar-route sidebarNoActive text-red-900 md:text-lg lg:text-xl hover:text-white '
         }  to={ruta}
         // isActive={(match,location) => {
         //     if (!match) {
         //         return setTest(true)
         //     }
         // }}
-        >{nombre} {match ?<img src={icon} alt='Logo' className='h-16' />:<img src={iconInactive} alt='Logo' className='h-16' />}</NavLink>
+        >{nombre} {match ?<img src={icon} alt='Logo' className='md:h-10 lg:h-16' />:<img src={iconInactive} alt='Logo' className='md:h-10 lg:h-16' />}</NavLink>
     </li> 
     )
 }

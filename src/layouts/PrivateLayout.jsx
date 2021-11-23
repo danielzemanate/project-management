@@ -8,7 +8,7 @@ import SidebarResponsive from "components/SidebarResponsivePl";
 
 const PrivateLayout = () => {
   return (
-    <div className="flex">
+    <div className="flex h-full overflow-hidden">
         <SidebarPrivateLayout />
         <SidebarResponsive />
       <div className="content w-100">

@@ -19,7 +19,7 @@
 
 .sidebarPl {
     width: 24rem;
-    height: calc(160vh - 62px);
+    height: calc(120vh - 62px);
     font-family: 'Rubik', sans-serif;
     /* box-shadow: -15px 0px 0px -15px inset; */
     border-right: 2px solid #e7e9eb;
@@ -129,7 +129,7 @@ ul {
   .tabla tr:hover {
     background-color: #ddd;
   }
-  @media (max-width: 900px) {
+  @media (max-width: 1095px) {
     .tableResponsive {
         display:none
     }
@@ -140,7 +140,7 @@ ul {
     }
 }
 
-@media (min-width: 900px) {
+@media (min-width: 1095px) {
     .divCardsTable {
         display:none;
     }

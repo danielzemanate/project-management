@@ -37,12 +37,12 @@ function App() {
         <BrowserRouter>
           {/* RUTAS PRIVADAS */}
               <Routes>
-                <Route path='/admin' element={<PrivateLayout />}>
-                  <Route path="/admin/landingAdmin" element={<LandingAdmin />} />
-                  <Route path="/admin/users" element={<UsersAdmin />} />
-                  <Route path="/admin/users/edit/:_id" element={<EditUsers />} />
-                  <Route path="/admin/projects" element={<Projects />} />
-                  <Route path="/admin/inscriptions" element={<Inscriptions />} />
+                <Route path='admin' element={<PrivateLayout />}>
+                  <Route path="landingAdmin" element={<LandingAdmin />} />
+                  <Route path="users" element={<UsersAdmin />} />
+                  <Route path="users/edit/:_id" element={<EditUsers />} />
+                  <Route path="projects" element={<Projects />} />
+                  <Route path="inscriptions" element={<Inscriptions />} />
                   <Route path="*" element={<NotFoundPage />} />
                 </Route>
               </Routes>

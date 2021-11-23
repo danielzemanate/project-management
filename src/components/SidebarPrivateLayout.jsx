@@ -1,15 +1,21 @@
 import React from 'react'
-import { NavLink } from 'react-router-dom'
+import { NavLink, useMatch,useResolvedPath } from 'react-router-dom'
 import logo_evanz from 'assets/images/logo_evanz.png'
+import iconUser from 'assets/images/iconUser.png'
+import iconUserBg from 'assets/images/iconUserBg.png'
+import iconProject from 'assets/images/iconProject.png'
+import iconProjectBg from 'assets/images/iconProjectBg.png'
+import iconInscriptions from 'assets/images/iconInscriptions.png'
+import iconInscriptionsBg from 'assets/images/iconInscriptionsBg.png'
 
 
 export const SidebarPrivateLayout = () => {
 
     //AGREGAR RUTAS NUEVAS, SU NOMBRE E ICONO PARA EL SIDEBAR
     const routeSidebar = [
-    {ruta:"/admin/users", nombre:"Usuarios", icon:"fas fa-users"},
-    {ruta:"/admin/projects", nombre:"Proyectos", icon:"fas fa-list"},
-    {ruta:"/admin/inscriptions", nombre:"Inscripciones", icon:"fas fa-user-plus"},
+    {ruta:"users", nombre:"Usuarios", iconActive:iconUser, iconInactive:iconUserBg},
+    {ruta:"projects", nombre:"Proyectos", iconActive:iconProject, iconInactive:iconProjectBg},
+    {ruta:"inscriptions", nombre:"Inscripciones", iconActive:iconInscriptions, iconInactive:iconInscriptionsBg},
     ]
     return (
             <div className='sidebarPl shadow-md'>
@@ -18,7 +24,7 @@ export const SidebarPrivateLayout = () => {
                     {/* SE RENDERIZA CADA UNO DE LOS COMPONENTES DEL SIDEBAR */}
                         {/* <SidebarRoute  ruta='/users' nombre='Usuarios' icon='fas fa-users'/> */}
                     {routeSidebar.map((item,index) => (
-                        <SidebarRoute key={index} ruta={item.ruta} nombre={item.nombre} icon={item.icon}/>
+                        <SidebarRoute key={index} ruta={item.ruta} nombre={item.nombre} icon={item.iconActive} iconInactive={item.iconInactive}/>
                         )
                     )}
                 </ul>
@@ -36,14 +42,29 @@ const Logo = () => {
   );
 };
 // COMPONENTE NAVLINK PARA CADA COMPONENTE DEL SIDEBAR
-const SidebarRoute = ({ruta,nombre,icon}) => {
+const SidebarRoute = ({ruta,nombre,icon, iconInactive}) => {
+
+    // EXTRAER PAGINA ACTIVA PARA CAMBIAR ICONO CON O SIN FONDO
+    const resolved = useResolvedPath(ruta);
+    const match = useMatch({ path: resolved.pathname, end: true });
+
+    // useEffect(() => {
+    //    console.log('activo:', match)
+    // }, [match])
     return(
         <li>
-        <NavLink  className={({ isActive }) =>
+        <NavLink className={({ isActive }) => 
+        
           isActive
             ? 'sidebar-route sidebarActive text-white text-xl font-medium'
             : 'sidebar-route sidebarNoActive text-gray-900 text-xl hover:text-white '
-        }  to={ruta}>{nombre}<i className={`${icon}`}/></NavLink>
+        }  to={ruta}
+        // isActive={(match,location) => {
+        //     if (!match) {
+        //         return setTest(true)
+        //     }
+        // }}
+        >{nombre} {match ?<img src={icon} alt='Logo' className='h-12' />:<img src={iconInactive} alt='Logo' className='h-12' />}</NavLink>
     </li> 
     )
 }

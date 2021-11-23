@@ -49,9 +49,9 @@ const NavbarPrivateLayout = () => {
         <NavbarToggler onClick={toggle} className= 'bg-white text-black' />
         <Collapse isOpen={isOpen} navbar>
           <Nav className="ms-auto" navbar>
-          <img width="60" className="px-1 rounded-circle" src={user}  alt=""/>
+          <img width="85" className="px-1 rounded-circle" src={user}  alt=""/>
             <UncontrolledDropdown nav inNavbar>
-              <DropdownToggle className='text-lg font-semibold text-white' nav caret>
+              <DropdownToggle className='text-lg font-semibold text-white border-b-2 border-white' nav caret>
                 DANIEL
               </DropdownToggle>
               <DropdownMenu right>

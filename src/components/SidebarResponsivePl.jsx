@@ -8,7 +8,7 @@ const SidebarResponsive = () => {
   const Logo = ({ styles }) => {
     return (
       <div className={styles}>
-        <img src={logo_evanz} alt="Logo" className="h-14" />
+        <img src={logo_evanz} alt="Logo" className="h-24" />
         {/* <span className='my-2 text-xl font-bold text-center'>Título de Mi Aplicación</span> */}
       </div>
     );
@@ -16,10 +16,10 @@ const SidebarResponsive = () => {
 
   //AGREGAR RUTAS NUEVAS, SU NOMBRE E ICONO PARA EL SIDEBAR
   const routeSidebar = [
-    { ruta: "/admin/users", nombre: "Usuarios", icon: "fas fa-users" },
-    { ruta: "/admin/projects", nombre: "Proyectos", icon: "fas fa-list" },
+    { ruta: "users", nombre: "Usuarios", icon: "fas fa-users" },
+    { ruta: "projects", nombre: "Proyectos", icon: "fas fa-list" },
     {
-      ruta: "/admin/inscriptions",
+      ruta: "inscriptions",
       nombre: "Inscripciones",
       icon: "fas fa-user-plus",
     },

@@ -11,7 +11,7 @@ const DropDown = ({ label, name, defaultValue = "", required, options }) => {
     setSelectedValue(defaultValue);
   }, [defaultValue]);
   return (
-    <label htmlFor={name} className="flex flex-col my-3 w-50">
+    <label htmlFor={name} className="flex flex-col my-3">
       <span className="mb-2 text-xl font-semibold">{label}</span>
       <select
         required={required}
@@ -30,7 +30,7 @@ const DropDown = ({ label, name, defaultValue = "", required, options }) => {
       </select>
       <div className="valid-feedback">Correcto!</div>
       <div className="invalid-feedback">
-        Seleccione un Estado para el Usuario.
+        Seleccione un {name} para el Usuario.
       </div>
     </label>
   );

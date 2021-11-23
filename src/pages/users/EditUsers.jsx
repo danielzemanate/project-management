@@ -27,9 +27,9 @@ const EditUsers = () => {
     variables: { _id },
   });
 
-  useEffect(() => {
-    console.log('validaciones', validated)
-  }, [setValidated, validated])
+  // useEffect(() => {
+  //   console.log('validaciones', validated)
+  // }, [setValidated, validated])
   // console.log(queryData);
 
   //SUBMIT FORM
@@ -39,7 +39,7 @@ const EditUsers = () => {
     if (formEvent.checkValidity() === false) {
       e.preventDefault();
       e.stopPropagation();
-      // toast.error("Ingrese Todos los campos");
+      toast.error("Ingrese Todos los campos");
     } else {
       e.preventDefault();
       // console.log('fd', formData);

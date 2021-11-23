@@ -57,14 +57,14 @@ const SidebarRoute = ({ruta,nombre,icon, iconInactive}) => {
         
           isActive
             ? 'sidebar-route sidebarActive text-white text-xl font-medium'
-            : 'sidebar-route sidebarNoActive text-gray-900 text-xl hover:text-white '
+            : 'sidebar-route sidebarNoActive text-red-900 text-xl hover:text-white '
         }  to={ruta}
         // isActive={(match,location) => {
         //     if (!match) {
         //         return setTest(true)
         //     }
         // }}
-        >{nombre} {match ?<img src={icon} alt='Logo' className='h-12' />:<img src={iconInactive} alt='Logo' className='h-12' />}</NavLink>
+        >{nombre} {match ?<img src={icon} alt='Logo' className='h-16' />:<img src={iconInactive} alt='Logo' className='h-16' />}</NavLink>
     </li> 
     )
 }

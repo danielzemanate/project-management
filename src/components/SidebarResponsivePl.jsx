@@ -1,7 +1,13 @@
 import React, { useState } from "react";
-import { NavLink } from 'react-router-dom'
+import { NavLink, useMatch,useResolvedPath } from 'react-router-dom'
 // import useActiveRoute from "hooks/useActiveRoute";
 import logo_evanz from "assets/images/logo_evanz.png";
+import iconUser from 'assets/images/iconUser.png'
+import iconUserBg from 'assets/images/iconUserBg.png'
+import iconProject from 'assets/images/iconProject.png'
+import iconProjectBg from 'assets/images/iconProjectBg.png'
+import iconInscriptions from 'assets/images/iconInscriptions.png'
+import iconInscriptionsBg from 'assets/images/iconInscriptionsBg.png'
 
 const SidebarResponsive = () => {
   // LOGO PARA SIDEBAR
@@ -14,16 +20,13 @@ const SidebarResponsive = () => {
     );
   };
 
-  //AGREGAR RUTAS NUEVAS, SU NOMBRE E ICONO PARA EL SIDEBAR
-  const routeSidebar = [
-    { ruta: "users", nombre: "Usuarios", icon: "fas fa-users" },
-    { ruta: "projects", nombre: "Proyectos", icon: "fas fa-list" },
-    {
-      ruta: "inscriptions",
-      nombre: "Inscripciones",
-      icon: "fas fa-user-plus",
-    },
-  ];
+   //AGREGAR RUTAS NUEVAS, SU NOMBRE E ICONO PARA EL SIDEBAR
+   const routeSidebar = [
+    {ruta:"users", nombre:"Usuarios", iconActive:iconUser, iconInactive:iconUserBg},
+    {ruta:"projects", nombre:"Proyectos", iconActive:iconProject, iconInactive:iconProjectBg},
+    {ruta:"inscriptions", nombre:"Inscripciones", iconActive:iconInscriptions, iconInactive:iconInscriptionsBg},
+    ]
+
   const [showNavigation, setShowNavigation] = useState(false);
   return (
     //   SIDEBAR PARA PANTALLAS PEQUEÑAS-MOVILES
@@ -46,7 +49,8 @@ const SidebarResponsive = () => {
               key={index}
               ruta={item.ruta}
               nombre={item.nombre}
-              icon={item.icon}
+              icon={item.iconActive}
+              iconInactive={item.iconInactive}
             />
           ))}
         </ul>
@@ -60,20 +64,23 @@ const SidebarResponsive = () => {
   );
 };
 
-const ResponsiveRoute = ({ ruta, nombre, icon }) => {
-  // const isActive = useActiveRoute(ruta);
+const ResponsiveRoute = ({ ruta, nombre, icon, iconInactive }) => {
+  // EXTRAER PAGINA ACTIVA PARA CAMBIAR ICONO CON O SIN FONDO
+  const resolved = useResolvedPath(ruta);
+  const match = useMatch({ path: resolved.pathname, end: true });
+
   return (
     <li>
       <NavLink
         className={({ isActive }) =>
           isActive
             ? "sidebar-route sidebarActive text-white text-lg font-medium "
-            : "sidebar-route sidebarNoActive text-gray-900 text-lg hover:text-white "
+            : "sidebar-route sidebarNoActive text-red-900 text-lg hover:text-white "
         }
         to={ruta}
       >
         {nombre}
-        <i className={`${icon}`} />
+        {match ?<img src={icon} alt='Logo' className='h-10 ml-3' />:<img src={iconInactive} alt='Logo' className='h-10 ml-3' />}
       </NavLink>
     </li>
   );

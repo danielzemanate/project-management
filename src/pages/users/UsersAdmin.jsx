@@ -32,7 +32,7 @@ const UsersAdmin = () => {
     );
 
   return (
-    <div className="ml-5 mr-7">
+    <div className="ml-5 mr-7 ">
       <div className='flex justify-center'>
         <span className="text-4xl m-3 mt-5 text-gray-800 font-semibold">
           USUARIOS REGISTRADOS

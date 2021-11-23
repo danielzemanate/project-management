@@ -6,7 +6,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
 .sidebar-route {
-    @apply rounded-lg flex w-full justify-between cursor-pointer items-center m-3 p-3;
+    @apply rounded-lg flex w-full justify-between cursor-pointer items-center m-5 p-5;
   }
 
 .sidebarActive {
@@ -50,7 +50,7 @@
 }
 
 .iconSidebar {
-    height: calc(150vh - 52px);
+    height: calc(120vh - 62px);
     /* box-shadow: -15px 0 15px -15px inset; */
     border-right: 2px solid #e7e9eb;
 }

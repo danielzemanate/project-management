@@ -60,7 +60,7 @@ const Register = () => {
   }, [errorMutation]);
 
   return (
-    <div className="flex flex-col h-full w-full items-center justify-center">
+    <div className="flex flex-col max-w-md w-full items-center justify-center pt-5">
       <h1 className="text-5xl text-red-900 font-bold my-4">Regístrate</h1>
       <form 
         className={`${validated} flex flex-col`}

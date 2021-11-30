@@ -38,7 +38,7 @@ const Register = () => {
       toast.error("Ingrese Todos los campos");
     } else {
       e.preventDefault();
-      console.log("enviar datos al backend", formData);
+      // console.log("enviar datos al backend", formData);
       // toast.success("Registro completo");
       // navigate("/admin/landingAdmin");
       await registro({ variables: formData });
@@ -47,7 +47,7 @@ const Register = () => {
   };
 
   useEffect(() => {
-    console.log("data mutation", dataMutation);
+    // console.log("data mutation", dataMutation);
     if (dataMutation) {
       if (dataMutation.registro.token) {
         // localStorage.setItem("token", dataMutation.registro.token);

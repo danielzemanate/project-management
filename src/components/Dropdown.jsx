@@ -16,7 +16,7 @@ const DropDown = ({ label, name, defaultValue = "", required, options }) => {
       <select
         required={required}
         name={name}
-        className="input form-control form-select"
+        className="input form-control form-select w-80"
         value={selectedValue}
         onChange={(e) => setSelectedValue(e.target.value)}
       >

@@ -41,7 +41,7 @@ const LandingAdmin = () => {
         <h1 className="hidden md:flex text-8xl text-gray-800 py-1 font-semibold">
           BIENVENIDO
         </h1>
-        <h1 className="md:hidden text-6xl text-gray-800 py-1 font-semibold">
+        <h1 className="md:hidden text-5xl text-gray-800 py-1 font-semibold">
           BIENVENIDO
         </h1>
       </div>
@@ -85,7 +85,7 @@ const LandingAdmin = () => {
                         <b>Usuarios</b>
                       </h2>
                        {/* RESPONSIVE */}
-                       <h2 className="md:hidden card-title text-2xl text-gray-900">
+                       <h2 className="md:hidden card-title text-xl text-gray-900">
                         <b>Usuarios</b>
                       </h2>
                       <div className="flex justify-center items-center text-center">
@@ -110,7 +110,7 @@ const LandingAdmin = () => {
                         <b>{item.nombre}</b>
                       </h2>
                       {/* RESPONSIVE */}
-                      <h2 className="md:hidden card-title text-2xl text-gray-900">
+                      <h2 className="md:hidden card-title text-xl text-gray-900">
                         <b>{item.nombre}</b>
                       </h2>
                       <div className="flex justify-center items-center text-center">

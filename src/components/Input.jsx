@@ -8,7 +8,7 @@ const Input = ({ label, name, defaultValue, type, required }) => {
         required={required}
         type={type}
         name={name}
-        className="input px-3 form-control w-80"
+        className="input px-3 form-control"
         defaultValue={defaultValue}
       />
       <div className="valid-feedback">Correcto!</div>

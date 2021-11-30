@@ -38,10 +38,17 @@ const EditarProjects = () => {
       toast.error("Ingrese Todos los campos");
     } else {
       e.preventDefault();
+
+      const presupuesto=parseFloat(formData.presupuesto)
+      const nombre=formData.nombre
       // console.log('fd', formData);
-      delete formData.rol;
+      // console.log(_id)
+      // delete formData.rol;
       editarProyecto({
-        variables: { _id, ...formData },
+        variables: { _id, campos :{
+          nombre,
+          presupuesto
+        } },
       });
     }
     setValidated("was-validated");
@@ -106,7 +113,7 @@ const EditarProjects = () => {
         />
         <Input
           label="Presupuesto:"
-          type="text"
+          type="number"
           name="presupuesto"
           defaultValue={queryData.Proyecto.presupuesto}
           required={true}

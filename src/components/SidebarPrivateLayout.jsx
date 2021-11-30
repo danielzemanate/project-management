@@ -7,13 +7,14 @@ import iconProject from 'assets/images/iconProject.png'
 import iconProjectBg from 'assets/images/iconProjectBg.png'
 import iconInscriptions from 'assets/images/iconInscriptions.png'
 import iconInscriptionsBg from 'assets/images/iconInscriptionsBg.png'
+import PrivateComponent from './PrivateComponent'
 
 
 export const SidebarPrivateLayout = () => {
 
     //AGREGAR RUTAS NUEVAS, SU NOMBRE E ICONO PARA EL SIDEBAR
     const routeSidebar = [
-    {ruta:"users", nombre:"Usuarios", iconActive:iconUser, iconInactive:iconUserBg},
+    // {ruta:"users", nombre:"Usuarios", iconActive:iconUser, iconInactive:iconUserBg},
     {ruta:"projects", nombre:"Proyectos", iconActive:iconProject, iconInactive:iconProjectBg},
     {ruta:"inscriptions", nombre:"Inscripciones", iconActive:iconInscriptions, iconInactive:iconInscriptionsBg},
     ]
@@ -22,7 +23,9 @@ export const SidebarPrivateLayout = () => {
                 <Logo/>
                 <ul>
                     {/* SE RENDERIZA CADA UNO DE LOS COMPONENTES DEL SIDEBAR */}
-                        {/* <SidebarRoute  ruta='/users' nombre='Usuarios' icon='fas fa-users'/> */}
+                    <PrivateComponent roleList={['ADMINISTRADOR']}>
+                        <SidebarRoute  ruta='users' nombre='Usuarios' icon={iconUser} iconInactive={iconUserBg}/>
+                      </PrivateComponent>
                     {routeSidebar.map((item,index) => (
                         <SidebarRoute key={index} ruta={item.ruta} nombre={item.nombre} icon={item.iconActive} iconInactive={item.iconInactive}/>
                         )

@@ -1,11 +1,14 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Google from "assets/images/google_logo.png";
 import useFormData from "hooks/useFormData";
 import { toast } from "react-toastify";
 import { Link } from "react-router-dom";
 import ButtonLoading from "components/ButtonLoading";
 import Input from "components/Input";
+import { useMutation } from "@apollo/client";
+import { LOGIN } from "graphql/auth/mutations";
 import { useNavigate } from "react-router";
+import { useAuth } from "context/authContext";
 
 const Login = () => {
   // FORMDATA HOOK
@@ -14,8 +17,17 @@ const Login = () => {
   //NAVEGACION ROUTER
   const navigate = useNavigate();
 
+  //TOKEN
+  const { setToken } = useAuth();
+
   //ESTADO VALIDACIONES FORMULARIO
   const [validated, setValidated] = React.useState("");
+
+  // MUTACION GRAPHQL LOGIN
+  const [
+    login,
+    { data: dataMutation, loading: mutationLoading, error: mutationError },
+  ] = useMutation(LOGIN);
 
   //DATOS TRAIDOS DEL FORMULARIO Y SUBMIT ENVIO DATOS
   const submitForm = (e) => {
@@ -27,15 +39,43 @@ const Login = () => {
       toast.error("Ingrese Todos los campos");
     } else {
       e.preventDefault();
-      console.log("enviar datos al backend", formData);
-      navigate("/admin/landingAdmin");
-      // registro({ variables: formData });
+      // console.log("enviar datos al backend", formData);
+      login({
+        variables: formData,
+      });
     }
     setValidated("was-validated");
   };
+
+  // GUARDAR TOKEN LOCALSTORAGE
+  useEffect(() => {
+    // console.log("data mutation", dataMutation);
+    if (dataMutation) {
+      // console.log("data mutation", dataMutation);
+      if (dataMutation.login) {
+        const token = dataMutation.login.token;
+        if (token) {
+          setToken(dataMutation.login.token);
+          navigate("/admin/landingAdmin");
+        } else {
+          toast.error("Error al iniciar sesión");
+        }
+      } else {
+        toast.error("Error al iniciar sesión");
+      }
+    }
+  }, [dataMutation, setToken, navigate]);
+
+  // // MANEJO ERRORES
+  useEffect(() => {
+    if (mutationError) {
+      toast.error("Error al iniciar sesión");
+    }
+  }, [mutationError]);
+
   return (
     <>
-      <div className="max-w-md w-full space-y-8">
+      <div className="max-w-md w-full space-y-8 pt-5">
         <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">
           Inicia sesión en tu cuenta
         </h2>
@@ -49,7 +89,12 @@ const Login = () => {
           <input type="hidden" name="remember" defaultValue="true" />
           <div className="rounded-md shadow-sm -space-y-px">
             <div>
-              <Input label="Email:" name="email" type="email" required={true} />
+              <Input
+                label="Email:"
+                name="correo"
+                type="email"
+                required={true}
+              />
             </div>
             <div>
               <Input
@@ -86,7 +131,11 @@ const Login = () => {
             </div>
           </div>
           <div>
-            <ButtonLoading disabled={false} loading={false} text="Login" />
+            <ButtonLoading
+              disabled={Object.keys(formData).length === 0}
+              loading={mutationLoading}
+              text="Login"
+            />
           </div>
           <div className="flex items-center justify-between">
             <span>¿No tienes cuenta?</span>

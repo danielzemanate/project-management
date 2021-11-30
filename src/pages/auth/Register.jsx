@@ -9,6 +9,7 @@ import { Link } from "react-router-dom";
 import { REGISTRO } from "graphql/auth/mutations";
 import { useMutation } from "@apollo/client";
 import { useNavigate } from "react-router";
+import { useAuth } from 'context/authContext';
 
 const Register = () => {
   //NAVEGACION ROUTER
@@ -18,6 +19,9 @@ const Register = () => {
   //ESTADO VALIDACIONES FORMULARIO
   const [validated, setValidated] = React.useState("");
 
+  // TOKEN CONTEXT
+  const { setToken } = useAuth();
+
   //MUTACION GRAPHQL PARA REGISTRO DE USUARIOS
   const [
     registro,
@@ -25,7 +29,7 @@ const Register = () => {
   ] = useMutation(REGISTRO);
 
   //DATOS TRAIDOS DEL FORMULARIO Y SUBMIT ENVIO DATOS
-  const submitForm = (e) => {
+  const submitForm = async (e) => {
     //VALIDACIONES
     const formEvent = e.target;
     if (formEvent.checkValidity() === false) {
@@ -35,9 +39,9 @@ const Register = () => {
     } else {
       e.preventDefault();
       console.log("enviar datos al backend", formData);
-      toast.success("Registro completo");
-      navigate("/admin/landingAdmin");
-      // registro({ variables: formData });
+      // toast.success("Registro completo");
+      // navigate("/admin/landingAdmin");
+      await registro({ variables: formData });
     }
     setValidated("was-validated");
   };
@@ -46,11 +50,12 @@ const Register = () => {
     console.log("data mutation", dataMutation);
     if (dataMutation) {
       if (dataMutation.registro.token) {
-        localStorage.setItem("token", dataMutation.registro.token);
+        // localStorage.setItem("token", dataMutation.registro.token);
+        setToken(dataMutation.registro.token);
         navigate("/admin/landingAdmin");
       }
     }
-  }, [dataMutation, navigate]);
+  }, [dataMutation, navigate, setToken]);
 
   // MANEJO ERRORES
   useEffect(() => {

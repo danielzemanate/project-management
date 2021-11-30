@@ -1,5 +1,5 @@
 // import logo from './logo.svg';
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "styles/styles.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import {
@@ -23,22 +23,25 @@ import AuthLayout from "layouts/AuthLayouth";
 import Register from "pages/auth/Register";
 import Login from "pages/auth/Login";
 import { AuthContext } from "context/authContext";
+import { UserContext } from "context/userContext";
+import jwt_decode from "jwt-decode";
+import PrivateRoute from "components/PrivateRoute";
 
 // CREATE HHTPLINK FROM QUERYS
 const httpLink = createHttpLink({
   // uri: 'http://localhost:4000/graphql',
-  uri: 'https://servidor-gql-mintic-nuevo.herokuapp.com/graphql',
+  uri: "https://servidor-gql-mintic-nuevo.herokuapp.com/graphql",
 });
 
 // ENVIAR TOKEN MEDIANTE HEADER
 const authLink = setContext((_, { headers }) => {
   // get the authentication token from  local storage if it exists
-  const token = JSON.parse(localStorage.getItem('token'));
+  const token = JSON.parse(localStorage.getItem("token"));
   // return the headers to the context so httpLink can read them
   return {
     headers: {
       ...headers,
-      authorization: token ? `Bearer ${token}` : '',
+      authorization: token ? `Bearer ${token}` : "",
     },
   };
 });
@@ -51,44 +54,70 @@ const client = new ApolloClient({
 });
 
 function App() {
-  // const [userData, setUserData] = useState({});
+  const [userData, setUserData] = useState({});
   const [authToken, setAuthToken] = useState("");
 
   const setToken = (token) => {
     setAuthToken(token);
     if (token) {
       localStorage.setItem("token", JSON.stringify(token));
+    } else {
+      localStorage.removeItem("token");
     }
   };
+
+  // OBTENER DATOS USUARIO DESDE EL TOKEN
+  useEffect(() => {
+    if (authToken) {
+      const decoded = jwt_decode(authToken);
+      setUserData({
+        _id: decoded._id,
+        nombre: decoded.nombre,
+        apellido: decoded.apellido,
+        identificacion: decoded.identificacion,
+        correo: decoded.correo,
+        rol: decoded.rol,
+      });
+    }
+  }, [authToken]);
 
   return (
     <ApolloProvider client={client}>
       <AuthContext.Provider value={{ authToken, setAuthToken, setToken }}>
-        <BrowserRouter>
-          <Routes>
-            {/* RUTAS PRIVADAS */}
-            <Route path="admin" element={<PrivateLayout />}>
-              <Route path="landingAdmin" element={<LandingAdmin />} />
-              <Route path="users" element={<UsersAdmin />} />
-              <Route path="users/edit/:_id" element={<EditUsers />} />
-              <Route path="projects" element={<Projects />} />
-              <Route path="inscriptions" element={<Inscriptions />} />
-              {/* <Route path="*" element={<NotFoundPage />} /> */}
-            </Route>
-            {/* AUTH */}
-            <Route path="auth" element={<AuthLayout />}>
-              <Route path="register" element={<Register />} />
-              <Route path="login" element={<Login />} />
-            </Route>
-            {/* RUTAS PUBLICAS */}
-            <Route path="/" element={<PublicLayout />}>
-              <Route path="/" element={<Home />} />
-              <Route path="/aboutUs" element={<Users />} />
-              {/* <Route path="*" element={<NotFoundPage />} /> */}
-            </Route>
-            <Route path="*" element={<NotFoundPage />} />
-          </Routes>
-        </BrowserRouter>
+        <UserContext.Provider value={{ userData, setUserData }}>
+          <BrowserRouter>
+            <Routes>
+              {/* RUTAS PRIVADAS */}
+              <Route path="admin" element={<PrivateLayout />}>
+                <Route path="landingAdmin" element={<LandingAdmin />} />
+                <Route
+                  path="users"
+                  element={
+                    <PrivateRoute roleList={["ADMINISTRADOR"]}>
+                      <UsersAdmin />
+                    </PrivateRoute>
+                  }
+                />
+                <Route path="users/edit/:_id" element={<EditUsers />} />
+                <Route path="projects" element={<Projects />} />
+                <Route path="inscriptions" element={<Inscriptions />} />
+                {/* <Route path="*" element={<NotFoundPage />} /> */}
+              </Route>
+              {/* AUTH */}
+              <Route path="auth" element={<AuthLayout />}>
+                <Route path="register" element={<Register />} />
+                <Route path="login" element={<Login />} />
+              </Route>
+              {/* RUTAS PUBLICAS */}
+              <Route path="/" element={<PublicLayout />}>
+                <Route path="/" element={<Home />} />
+                <Route path="/aboutUs" element={<Users />} />
+                {/* <Route path="*" element={<NotFoundPage />} /> */}
+              </Route>
+              <Route path="*" element={<NotFoundPage />} />
+            </Routes>
+          </BrowserRouter>
+        </UserContext.Provider>
       </AuthContext.Provider>
     </ApolloProvider>
   );

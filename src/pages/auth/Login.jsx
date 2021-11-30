@@ -39,8 +39,8 @@ const Login = () => {
       toast.error("Ingrese Todos los campos");
     } else {
       e.preventDefault();
-      console.log("enviar datos al backend", formData);
-       login({
+      // console.log("enviar datos al backend", formData);
+      login({
         variables: formData,
       });
     }
@@ -49,11 +49,19 @@ const Login = () => {
 
   // GUARDAR TOKEN LOCALSTORAGE
   useEffect(() => {
-    console.log("data mutation", dataMutation);
+    // console.log("data mutation", dataMutation);
     if (dataMutation) {
-      if (dataMutation.login.token) {
-        setToken(dataMutation.login.token);
-        navigate("/admin/landingAdmin");
+      // console.log("data mutation", dataMutation);
+      if (dataMutation.login) {
+        const token = dataMutation.login.token;
+        if (token) {
+          setToken(dataMutation.login.token);
+          navigate("/admin/landingAdmin");
+        } else {
+          toast.error("Error al iniciar sesión");
+        }
+      } else {
+        toast.error("Error al iniciar sesión");
       }
     }
   }, [dataMutation, setToken, navigate]);
@@ -81,7 +89,12 @@ const Login = () => {
           <input type="hidden" name="remember" defaultValue="true" />
           <div className="rounded-md shadow-sm -space-y-px">
             <div>
-              <Input label="Email:" name="correo" type="email" required={true} />
+              <Input
+                label="Email:"
+                name="correo"
+                type="email"
+                required={true}
+              />
             </div>
             <div>
               <Input

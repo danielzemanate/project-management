@@ -12,6 +12,7 @@ import {
   DropdownItem,
 } from 'reactstrap'
 import { Link } from 'react-router-dom';
+import { useAuth } from 'context/authContext';
 
 // import logo from 'assets/images/logo1.png'
 import user from 'assets/images/user.png'
@@ -20,11 +21,13 @@ import user from 'assets/images/user.png'
 const NavbarPrivateLayout = () => {
 
   const [isOpen, setIsOpen] = useState(false);
+  const { setToken } = useAuth();
 
 
   //CERRAR SESION Y BORRAR TOKEN
   const cerrarSesion = () => {
-    console.log('cerrar sesión')
+    console.log('eliminar token');
+    setToken(null);
   }
 
 //   useEffect(() => {

@@ -1,13 +1,14 @@
 import React, { useState } from "react";
-import { NavLink, useMatch,useResolvedPath } from 'react-router-dom'
+import { NavLink, useMatch, useResolvedPath } from "react-router-dom";
 // import useActiveRoute from "hooks/useActiveRoute";
 import logo_evanz from "assets/images/logo_evanz.png";
-import iconUser from 'assets/images/iconUser.png'
-import iconUserBg from 'assets/images/iconUserBg.png'
-import iconProject from 'assets/images/iconProject.png'
-import iconProjectBg from 'assets/images/iconProjectBg.png'
-import iconInscriptions from 'assets/images/iconInscriptions.png'
-import iconInscriptionsBg from 'assets/images/iconInscriptionsBg.png'
+import iconUser from "assets/images/iconUser.png";
+import iconUserBg from "assets/images/iconUserBg.png";
+import iconProject from "assets/images/iconProject.png";
+import iconProjectBg from "assets/images/iconProjectBg.png";
+import iconInscriptions from "assets/images/iconInscriptions.png";
+import iconInscriptionsBg from "assets/images/iconInscriptionsBg.png";
+import PrivateComponent from "./PrivateComponent";
 
 const SidebarResponsive = () => {
   // LOGO PARA SIDEBAR
@@ -20,12 +21,27 @@ const SidebarResponsive = () => {
     );
   };
 
-   //AGREGAR RUTAS NUEVAS, SU NOMBRE E ICONO PARA EL SIDEBAR
-   const routeSidebar = [
-    {ruta:"users", nombre:"Usuarios", iconActive:iconUser, iconInactive:iconUserBg},
-    {ruta:"projects", nombre:"Proyectos", iconActive:iconProject, iconInactive:iconProjectBg},
-    {ruta:"inscriptions", nombre:"Inscripciones", iconActive:iconInscriptions, iconInactive:iconInscriptionsBg},
-    ]
+  //AGREGAR RUTAS NUEVAS, SU NOMBRE E ICONO PARA EL SIDEBAR
+  const routeSidebar = [
+    // {
+    //   ruta: "users",
+    //   nombre: "Usuarios",
+    //   iconActive: iconUser,
+    //   iconInactive: iconUserBg,
+    // },
+    {
+      ruta: "projects",
+      nombre: "Proyectos",
+      iconActive: iconProject,
+      iconInactive: iconProjectBg,
+    },
+    {
+      ruta: "inscriptions",
+      nombre: "Inscripciones",
+      iconActive: iconInscriptions,
+      iconInactive: iconInscriptionsBg,
+    },
+  ];
 
   const [showNavigation, setShowNavigation] = useState(false);
   return (
@@ -44,6 +60,14 @@ const SidebarResponsive = () => {
       {showNavigation && (
         <ul>
           {/* SE RENDERIZA CADA UNO DE LOS COMPONENTES DEL SIDEBAR */}
+          <PrivateComponent roleList={["ADMINISTRADOR"]}>
+            <ResponsiveRoute
+              ruta="users"
+              nombre="Usuarios"
+              icon={iconUser}
+              iconInactive={iconUserBg}
+            />
+          </PrivateComponent>
           {routeSidebar.map((item, index) => (
             <ResponsiveRoute
               key={index}
@@ -80,7 +104,11 @@ const ResponsiveRoute = ({ ruta, nombre, icon, iconInactive }) => {
         to={ruta}
       >
         {nombre}
-        {match ?<img src={icon} alt='Logo' className='h-10 ml-3' />:<img src={iconInactive} alt='Logo' className='h-10 ml-3' />}
+        {match ? (
+          <img src={icon} alt="Logo" className="h-10 ml-3" />
+        ) : (
+          <img src={iconInactive} alt="Logo" className="h-10 ml-3" />
+        )}
       </NavLink>
     </li>
   );

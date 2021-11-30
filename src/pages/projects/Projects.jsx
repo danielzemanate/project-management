@@ -82,6 +82,7 @@ const Projects = () => {
                     <p className="card-text"><b>Presupuesto:</b> {u.presupuesto}</p>
                     <p className="card-text"><b>Fecha Inicio:</b> {u.fechaInicio}</p>
                     <p className="card-text"><b>Fecha Fin:</b> {u.fechaFin}</p>
+                    <p className="card-text"><b>Estado:</b> {u.estado}</p>
                     <p className="card-text"><b>Fase:</b> {u.fase}</p>   
                     <Link className='flex mt-2' to={`/admin/projects/editar/${u._id}`}>
                       <button className='bg-red-700 text-white font-bold text-xl py-2 px-1 rounded-xl hover:bg-red-500 shadow-md my-1'>EDITAR</button>

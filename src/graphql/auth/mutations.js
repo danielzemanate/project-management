@@ -22,5 +22,22 @@ const REGISTRO = gql`
     }
   }
 `;
+const LOGIN = gql`
+  mutation Login($correo: String!, $password: String!) {
+    login(correo: $correo, password: $password) {
+      token
+      error
+    }
+  }
+`;
 
-export { REGISTRO };
+const VALIDATE_TOKEN = gql`
+  mutation ValidateToken {
+    validateToken {
+      token
+      error
+    }
+  }
+`;
+
+export { REGISTRO, LOGIN, VALIDATE_TOKEN };

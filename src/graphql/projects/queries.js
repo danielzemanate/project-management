@@ -32,4 +32,36 @@ query Proyectos {
   }
 `;
 
-export {GET_PROYECTOS};
+const GET_PROYECTO = gql` 
+query Usuario($_id: String!) {
+  Proyecto(_id: $_id) {
+    _id
+    nombre
+    presupuesto
+    fechaInicio
+    fechaFin
+    estado
+    fase
+    lider {
+      _id   
+    }
+    objetivos {
+      _id
+    }
+    avances {
+      _id
+      creadoPor {
+        _id
+      }
+    }
+    inscripciones {
+      _id
+      estudiante {
+        _id
+      }
+    }  
+  }    
+}
+`;
+
+export {GET_PROYECTOS, GET_PROYECTO};

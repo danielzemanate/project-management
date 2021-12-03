@@ -11,7 +11,8 @@ query Proyectos {
     estado
     fase
     lider {
-      _id   
+      _id
+      correo   
     }
     objetivos {
       _id
@@ -43,7 +44,8 @@ query Usuario($_id: String!) {
     estado
     fase
     lider {
-      _id   
+      _id
+      correo      
     }
     objetivos {
       _id
@@ -63,5 +65,6 @@ query Usuario($_id: String!) {
   }    
 }
 `;
+
 
 export {GET_PROYECTOS, GET_PROYECTO};

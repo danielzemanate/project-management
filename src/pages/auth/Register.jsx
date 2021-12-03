@@ -9,6 +9,7 @@ import { Link } from "react-router-dom";
 import { REGISTRO } from "graphql/auth/mutations";
 import { useMutation } from "@apollo/client";
 import { useNavigate } from "react-router";
+import { useAuth } from "context/authContext";
 
 const Register = () => {
   //NAVEGACION ROUTER
@@ -18,6 +19,9 @@ const Register = () => {
   //ESTADO VALIDACIONES FORMULARIO
   const [validated, setValidated] = React.useState("");
 
+  // TOKEN CONTEXT
+  const { setToken } = useAuth();
+
   //MUTACION GRAPHQL PARA REGISTRO DE USUARIOS
   const [
     registro,
@@ -25,7 +29,7 @@ const Register = () => {
   ] = useMutation(REGISTRO);
 
   //DATOS TRAIDOS DEL FORMULARIO Y SUBMIT ENVIO DATOS
-  const submitForm = (e) => {
+  const submitForm = async (e) => {
     //VALIDACIONES
     const formEvent = e.target;
     if (formEvent.checkValidity() === false) {
@@ -34,23 +38,31 @@ const Register = () => {
       toast.error("Ingrese Todos los campos");
     } else {
       e.preventDefault();
-      console.log("enviar datos al backend", formData);
-      toast.success("Registro completo");
-      navigate("/admin/landingAdmin");
-      // registro({ variables: formData });
+      // console.log("enviar datos al backend", formData);
+      // toast.success("Registro completo");
+      // navigate("/admin/landingAdmin");
+      await registro({ variables: formData });
     }
     setValidated("was-validated");
   };
 
   useEffect(() => {
-    console.log("data mutation", dataMutation);
+    // console.log("data mutation", dataMutation);
     if (dataMutation) {
-      if (dataMutation.registro.token) {
-        localStorage.setItem("token", dataMutation.registro.token);
-        navigate("/admin/landingAdmin");
+      if (dataMutation.registro) {
+        const token = dataMutation.registro.token;
+        if (token) {
+          // localStorage.setItem("token", dataMutation.registro.token);
+          setToken(dataMutation.registro.token);
+          navigate("/admin/landingAdmin");
+        } else {
+          toast.error("Error al registrarse");
+        } 
+      } else {
+        toast.error("Error al registrarse");
       }
     }
-  }, [dataMutation, navigate]);
+  }, [dataMutation, navigate, setToken]);
 
   // MANEJO ERRORES
   useEffect(() => {
@@ -62,15 +74,15 @@ const Register = () => {
   return (
     <div className="flex flex-col max-w-md w-full items-center justify-center pt-5">
       <h1 className="text-5xl text-red-900 font-bold my-4">Regístrate</h1>
-      <form 
+      <form
         className={`${validated} flex flex-col`}
         onSubmit={submitForm}
         onChange={updateFormData}
-        ref={form} 
+        ref={form}
         noValidate
       >
         <div className="md:grid md:grid-cols-2 md:gap-x-8 md:gap-y-1 sm:flex sm:flex-col">
-          <Input label="Nombre:" name="nombre" type="text" required={true}/>
+          <Input label="Nombre:" name="nombre" type="text" required={true} />
           <Input label="Apellido:" name="apellido" type="text" required />
           <Input
             label="Documento:"

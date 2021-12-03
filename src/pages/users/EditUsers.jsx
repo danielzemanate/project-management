@@ -87,7 +87,7 @@ const EditUsers = () => {
     );
 
   return (
-    <div className="flew flex-col w-full h-full items-center justify-center p-10">
+    <div className="flew flex-col items-center justify-center p-3">
       <Link to="/admin/users">
         <i className="fas fa-arrow-left text-gray-600 cursor-pointer font-bold text-xl hover:text-gray-900" />
       </Link>

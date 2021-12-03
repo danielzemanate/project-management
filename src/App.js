@@ -21,6 +21,7 @@ import AuthLayout from "layouts/AuthLayouth";
 import Register from "pages/auth/Register";
 import Login from "pages/auth/Login";
 import EditarProjects from "pages/projects/EditarProjects";
+import CardsProject from "pages/projects/CardsProject";
 
 // CREATE HHTPLINK FROM QUERYS
 // const httpLink = createHttpLink({
@@ -45,6 +46,7 @@ function App() {
             <Route path="users" element={<UsersAdmin />} />
             <Route path="users/edit/:_id" element={<EditUsers />} />
             <Route path="projects" element={<Projects />} />
+            <Route path="cardsprojects" element={<CardsProject />} />
             <Route path="projects/editar/:_id" element={<EditarProjects />} />
             <Route path="inscriptions" element={<Inscriptions />} />
             {/* <Route path="*" element={<NotFoundPage />} /> */}

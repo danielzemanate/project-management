@@ -5,6 +5,7 @@ mutation EditarProyecto($_id: String!, $campos: camposProyecto!) {
     editarProyecto(_id: $_id, campos: $campos) {
       _id
       nombre
+      estado
       presupuesto
       objetivos {
         _id
@@ -12,5 +13,6 @@ mutation EditarProyecto($_id: String!, $campos: camposProyecto!) {
     }
   }
 `;
+
 
 export {EDITAR_PROYECTO}

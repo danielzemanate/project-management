@@ -103,8 +103,8 @@ function App() {
                 />
                 <Route path="users/edit/:_id" element={<EditUsers />} />
                 <Route path="projects" element={<Projects />} />
-                <Route path="projects/nuevo" element={<NuevoProyecto />} />
                 <Route path="cardsprojects" element={<CardsProject />} />
+                <Route path="cardsprojects/nuevo" element={<NuevoProyecto />} />
             <Route path="projects/editar/:_id" element={<EditarProjects />} />
                 <Route path="inscriptions" element={<Inscriptions />} />
                 {/* <Route path="*" element={<NotFoundPage />} /> */}

@@ -5,6 +5,7 @@ import AccordionDetails from '@mui/material/AccordionDetails';
 import { styled } from '@mui/material/styles';
 import { useMutation, useQuery } from '@apollo/client';
 import { GET_PROYECTOS } from 'graphql/projects/queries';
+import { CREAR_INSCRIPCION } from 'graphql/inscripciones/mutaciones';
 import DropDown from 'components/Dropdown';
 import { Dialog } from '@mui/material';
 import { Enum_EstadoProyecto } from 'utils/enum';
@@ -13,6 +14,8 @@ import { EDITAR_PROYECTO } from 'graphql/projects/mutation';
 import useFormData from 'hooks/useFormData';
 import { Link } from 'react-router-dom';
 import ReactLoading from "react-loading";
+import { toast } from 'react-toastify';
+import { useUser } from 'context/userContext';
 import PrivateComponent from 'components/PrivateComponent';
 
 const AccordionStyled = styled((props) => <Accordion {...props} />)(({ theme }) => ({

@@ -22,6 +22,8 @@ import Inscriptions from "pages/inscriptions/Inscriptions";
 import AuthLayout from "layouts/AuthLayouth";
 import Register from "pages/auth/Register";
 import Login from "pages/auth/Login";
+import EditarProjects from "pages/projects/EditarProjects";
+import CardsProject from "pages/projects/CardsProject";
 import { AuthContext } from "context/authContext";
 import { UserContext } from "context/userContext";
 import jwt_decode from "jwt-decode";
@@ -29,8 +31,8 @@ import PrivateRoute from "components/PrivateRoute";
 
 // CREATE HHTPLINK FROM QUERYS
 const httpLink = createHttpLink({
-  // uri: 'http://localhost:4000/graphql',
-  uri: "https://servidor-gql-mintic-nuevo.herokuapp.com/graphql",
+  uri: 'http://localhost:4000/graphql',
+  // uri: "https://servidor-gql-mintic-nuevo.herokuapp.com/graphql",
 });
 
 // ENVIAR TOKEN MEDIANTE HEADER
@@ -100,6 +102,8 @@ function App() {
                 />
                 <Route path="users/edit/:_id" element={<EditUsers />} />
                 <Route path="projects" element={<Projects />} />
+                <Route path="cardsprojects" element={<CardsProject />} />
+            <Route path="projects/editar/:_id" element={<EditarProjects />} />
                 <Route path="inscriptions" element={<Inscriptions />} />
                 {/* <Route path="*" element={<NotFoundPage />} /> */}
               </Route>

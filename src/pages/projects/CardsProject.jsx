@@ -73,21 +73,21 @@ const AccordionStyled = styled((props) => <Accordion {...props} />)(({ theme }) 
             </div>
           </AccordionSummaryStyled>
           <AccordionDetailsStyled>
-          <PrivateComponent roleList={['ADMINISTRADOR']}>
-            <i
-              className='mx-4 fas fa-pen text-yellow-600 hover:text-yellow-400'
-              onClick={() => {
-                setShowDialog(true);
-              }}
-            />
-          </PrivateComponent>
-          <PrivateComponent roleList={['ESTUDIANTE']}>
-            <InscripcionProyecto
-              idProyecto={proyecto._id}
-              estado={proyecto.estado}
-              inscripciones={proyecto.inscripciones}
-            />
-          </PrivateComponent>
+            <PrivateComponent roleList={['ADMINISTRADOR']}>
+              <i
+                className='mx-4 fas fa-pen text-yellow-600 hover:text-yellow-400'
+                onClick={() => {
+                  setShowDialog(true);
+                }}
+              />
+            </PrivateComponent>
+            <PrivateComponent roleList={['ESTUDIANTE']}>
+              <InscripcionProyecto
+                idProyecto={proyecto._id}
+                estado={proyecto.estado}
+                inscripciones={proyecto.inscripciones}
+              />
+            </PrivateComponent>
             <div>Liderado Por: {proyecto.lider.correo}</div>
             <div className='flex'>
               {proyecto.objetivos.map((objetivo) => {

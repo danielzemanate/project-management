@@ -31,8 +31,8 @@ import PrivateRoute from "components/PrivateRoute";
 
 // CREATE HHTPLINK FROM QUERYS
 const httpLink = createHttpLink({
-  // uri: 'http://localhost:4000/graphql',
-  uri: "https://servidor-gql-mintic-nuevo.herokuapp.com/graphql",
+  uri: 'http://localhost:4000/graphql',
+  // uri: "https://servidor-gql-mintic-nuevo.herokuapp.com/graphql",
 });
 
 // ENVIAR TOKEN MEDIANTE HEADER

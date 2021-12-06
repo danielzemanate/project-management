@@ -11,10 +11,13 @@ query Proyectos {
     estado
     fase
     lider {
-      _id   
+      _id
+      correo   
     }
     objetivos {
       _id
+      descripcion
+      tipo
     }
     avances {
       _id
@@ -43,10 +46,13 @@ query Usuario($_id: String!) {
     estado
     fase
     lider {
-      _id   
+      _id
+      correo   
     }
     objetivos {
       _id
+      descripcion
+      tipo
     }
     avances {
       _id

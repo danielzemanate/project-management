@@ -130,7 +130,7 @@ const Login = () => {
               </a>
             </div>
           </div>
-          <div>
+          <div className='w-100 flex justify-center'>
             <ButtonLoading
               disabled={Object.keys(formData).length === 0}
               loading={mutationLoading}

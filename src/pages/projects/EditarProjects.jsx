@@ -8,10 +8,13 @@ import ButtonLoading from "components/ButtonLoading";
 import DropDown from "components/Dropdown";
 import useFormData from "hooks/useFormData";
 import ReactLoading from "react-loading";
+import { EDITAR_PROYECTO } from "graphql/projects/mutation";
+import { Enum_EstadoProyecto } from "utils/enum";
 
 const EditarProjects = () => {
 
-    const {data,error,loading} = useQuery(GET_PROYECTO);
+     // ESTADO PARA CAPTURAR DATOS DEL FORMULARIO
+    const { form, formData, updateFormData } = useFormData(null);
     const { _id } = useParams();
 
       //ESTADO VALIDACIONES FORMULARIO
@@ -26,46 +29,53 @@ const EditarProjects = () => {
     });
 
 //       //SUBMIT FORM
-//   const submitForm = (e) => {
-//     //VALIDACIONES
-//     const formEvent = e.target;
-//     if (formEvent.checkValidity() === false) {
-//       e.preventDefault();
-//       e.stopPropagation();
-//       toast.error("Ingrese Todos los campos");
-//     } else {
-//       e.preventDefault();
-//       // console.log('fd', formData);
-//       delete formData.rol;
-//       editarUsuario({
-//         variables: { _id, ...formData },
-//       });
-//     }
-//     setValidated("was-validated");
-//   };
+  const submitForm = (e) => {
+    //VALIDACIONES
+    const formEvent = e.target;
+    if (formEvent.checkValidity() === false) {
+      e.preventDefault();
+      e.stopPropagation();
+      toast.error("Ingrese Todos los campos");
+    } else {
+      e.preventDefault();
 
-  // MUTACION PARA EDITAR USUARIO
-//   const [
-//     EditarProjects,
-//     { data: mutationData, loading: mutationLoading, error: mutationError },
-//   ] = useMutation(EDITAR_PROYECTO);
+      const presupuesto=parseFloat(formData.presupuesto)
+      const nombre=formData.nombre
+      // console.log('fd', formData);
+      // console.log(_id)
+      // delete formData.rol;
+      editarProyecto({
+        variables: { _id, campos :{
+          nombre,
+          presupuesto
+        } },
+      });
+    }
+    setValidated("was-validated");
+  };
+
+//   MUTACION PARA EDITAR PROYECTO
+  const [
+    editarProyecto,
+    { data: mutationData, loading: mutationLoading, error: mutationError },
+  ] = useMutation(EDITAR_PROYECTO);
 
   //USEEFFECT PARA MANEJO DE ERRORES Y SUCCESS
-//   useEffect(() => {
-//     if (mutationData) {
-//       toast.success("Usuario modificado correctamente");
-//     }
-//   }, [mutationData]);
+  useEffect(() => {
+    if (mutationData) {
+      toast.success("Proyecto modificado correctamente");
+    }
+  }, [mutationData]);
 
-//   useEffect(() => {
-//     if (mutationError) {
-//       toast.error("Error modificando el usuario");
-//     }
+  useEffect(() => {
+    if (mutationError) {
+      toast.error("Error modificando el Proyecto");
+    }
 
-//     if (queryError) {
-//       toast.error("Error consultando el usuario");
-//     }
-//   }, [queryError, mutationError]);
+    if (queryError) {
+      toast.error("Error consultando el Proyecto");
+    }
+  }, [queryError, mutationError]);
 
   //   LOADING PARA CARGAR PROYECTO
   if (queryLoading)
@@ -87,13 +97,13 @@ const EditarProjects = () => {
       <h1 className="m-4 text-4xl text-gray-800 font-bold text-center">
         Editar Proyecto
       </h1>
-      {/* <form
+      <form
         onSubmit={submitForm}
         onChange={updateFormData}
         ref={form}
         className={`${validated} flex flex-col items-center justify-center needs-validation`}
         noValidate
-      > */}
+      >
         <Input
           label="Nombre:"
           type="text"
@@ -103,41 +113,20 @@ const EditarProjects = () => {
         />
         <Input
           label="Presupuesto:"
-          type="text"
-          name="apellido"
+          type="number"
+          name="presupuesto"
           defaultValue={queryData.Proyecto.presupuesto}
           required={true}
         />
-        <Input
-          label="Fecha de inicio:"
-          type="email"
-          name="correo"
-          defaultValue={queryData.Proyecto.fechaInicio}
-          required={true}
-        />
-        <Input
-          label="Fecha fin:"
-          type="text"
-          name="identificacion"
-          defaultValue={queryData.Proyecto.fechaFin}
-          required={true}
-        />
-        {/* <DropDown
-          label="Estado de la persona:"
-          name="estado"
-          defaultValue={queryData.Proyecto.estado}
-          required={true}
-          options={Enum_EstadoUsuario}
-        /> */}
         <span className="mb-2 text-xl font-semibold">
           Fase: {queryData.Proyecto.fase}
         </span>
-        {/* <ButtonLoading
+        <ButtonLoading
           disabled={Object.keys(formData).length === 0}
           loading={mutationLoading}
           text="Confirmar"
         />
-      </form> */}
+      </form>
         </div>
     )
 }

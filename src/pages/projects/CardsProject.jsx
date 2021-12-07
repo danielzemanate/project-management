@@ -73,7 +73,7 @@ const AccordionStyled = styled((props) => <Accordion {...props} />)(({ theme }) 
             </div>
           </AccordionSummaryStyled>
           <AccordionDetailsStyled>
-            <PrivateComponent roleList={['ADMINISTRADOR']}>
+            <PrivateComponent roleList={['ADMINISTRADOR', 'LIDER']}>
               <i
                 className='mx-4 fas fa-pen text-yellow-600 hover:text-yellow-400'
                 onClick={() => {

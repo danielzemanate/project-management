@@ -149,6 +149,7 @@ const AccordionStyled = styled((props) => <Accordion {...props} />)(({ theme }) 
         <div>{descripcion}</div>
           <PrivateComponent roleList={['ADMINISTRADOR', 'LIDER']}>
             <div>Editar</div>
+            <Link to='/admin/cardsprojects/nuevo'>Crear nuevo proyecto</Link>
           </PrivateComponent>
       </div>
     );

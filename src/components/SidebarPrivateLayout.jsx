@@ -15,7 +15,7 @@ export const SidebarPrivateLayout = () => {
     //AGREGAR RUTAS NUEVAS, SU NOMBRE E ICONO PARA EL SIDEBAR
     const routeSidebar = [
     // {ruta:"users", nombre:"Usuarios", iconActive:iconUser, iconInactive:iconUserBg},
-    {ruta:"projects", nombre:"Proyectos", iconActive:iconProject, iconInactive:iconProjectBg},
+    {ruta:"cardsprojects", nombre:"Proyectos", iconActive:iconProject, iconInactive:iconProjectBg},
     {ruta:"inscriptions", nombre:"Inscripciones", iconActive:iconInscriptions, iconInactive:iconInscriptionsBg},
     ]
     return (

@@ -4,19 +4,19 @@ import AccordionSummary from '@mui/material/AccordionSummary';
 import AccordionDetails from '@mui/material/AccordionDetails';
 import { styled } from '@mui/material/styles';
 import { useMutation, useQuery } from '@apollo/client';
-import { GET_AVANCE } from 'graphql/avances/queries';
-import { CREAR_INSCRIPCION } from 'graphql/inscripciones/mutaciones';
+import { GET_AVANCE } from 'graphql/avances/queries'
 import DropDown from 'components/Dropdown';
 import { Dialog } from '@mui/material';
 import { Enum_EstadoProyecto } from 'utils/enum';
 import ButtonLoading from 'components/ButtonLoading';
-import { EDITAR_PROYECTO } from 'graphql/projects/mutation';
+import { EDITAR_AVANCE } from 'graphql/avances/mutation';
 import useFormData from 'hooks/useFormData';
 import { Link } from 'react-router-dom';
 import ReactLoading from "react-loading";
 import { toast } from 'react-toastify';
 import { useUser } from 'context/userContext';
 import PrivateComponent from 'components/PrivateComponent';
+import { CREAR_AVANCE } from 'graphql/avances/mutation';
 
 const AccordionStyled = styled((props) => <Accordion {...props} />)(({ theme }) => ({
     backgroundColor: '#919191',
@@ -46,7 +46,7 @@ const AccordionStyled = styled((props) => <Accordion {...props} />)(({ theme }) 
           <PrivateComponent roleList={['ADMINISTRADOR', 'LIDER']}>
             <div className='my-2 self-end'>
               <button className='bg-indigo-500 text-gray-50 p-2 rounded-lg shadow-lg hover:bg-indigo-400'>
-                <Link to='/admin/cardsprojects/nuevo'>Crear nuevo avance</Link>
+                <Link to='/admin/avances/nuevo'>Crear nuevo avance</Link>
               </button>
             </div>
           </PrivateComponent>
@@ -113,7 +113,7 @@ const AccordionStyled = styled((props) => <Accordion {...props} />)(({ theme }) 
   
   const FormEditAvance = ({ _id }) => {
     const { form, formData, updateFormData } = useFormData();
-    const [editarAvance, { data: dataMutation, loading, error }] = useMutation(EDITAR_PROYECTO);
+    const [editarAvance, { data: dataMutation, loading, error }] = useMutation(EDITAR_AVANCE);
   
     const submitForm = (e) => {
       e.preventDefault();
@@ -158,38 +158,38 @@ const AccordionStyled = styled((props) => <Accordion {...props} />)(({ theme }) 
     );
   };
 
-  const InscripcionAvance = ({ idProyecto, estado, inscripciones }) => {
-    const [estadoInscripcion, setEstadoInscripcion] = useState('');
-    const [crearInscripcion, { data, loading, error }] = useMutation(CREAR_INSCRIPCION);
+  const InscripcionAvance = ({ idProyecto, estado, avances }) => {
+    const [estadoAvance, setEstadoAvance] = useState('');
+    const [crearAvance, { data, loading, error }] = useMutation(CREAR_AVANCE);
     const { userData } = useUser();
   
     useEffect(() => {
-      if (userData && inscripciones) {
-        const flt = inscripciones.filter((el) => el.estudiante._id === userData._id);
+      if (userData && avances) {
+        const flt = avances.filter((el) => el.estudiante._id === userData._id);
         if (flt.length > 0) {
-          setEstadoInscripcion(flt[0].estado);
+          setEstadoAvance(flt[0].estado);
         }
       }
-    }, [userData, inscripciones]);
+    }, [userData, avances]);
   
     useEffect(() => {
       if (data) {
         console.log(data);
-        toast.success('inscripcion creada con exito');
+        toast.success('Avance creado con exito');
       }
     }, [data]);
   
-    const confirmarInscripcion = () => {
-      crearInscripcion({ variables: { proyecto: idProyecto, estudiante: userData._id } });
+    const confirmarAvance = () => {
+      crearAvance({ variables: { proyecto: idProyecto, estudiante: userData._id } });
     };
   
     return (
       <>
-        {estadoInscripcion !== '' ? (
-          <span>Ya estas inscrito en este proyecto y el estado es {estadoInscripcion}</span>
+        {estadoAvance !== '' ? (
+          <span>Ya estas inscrito en este proyecto y el estado es {estadoAvance}</span>
         ) : (
           <ButtonLoading
-            onClick={() => confirmarInscripcion()}
+            onClick={() => confirmarAvance()}
             disabled={estado === 'INACTIVO'}
             loading={loading}
             text='Inscribirme en este proyecto'

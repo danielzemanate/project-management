@@ -30,6 +30,7 @@ import jwt_decode from "jwt-decode";
 import PrivateRoute from "components/PrivateRoute";
 import NuevoProyecto from "pages/projects/NuevoProyecto";
 import Avances from "pages/avances/Avances";
+import NuevoAvance from "pages/avances/NuevoAvance";
 
 // CREATE HHTPLINK FROM QUERYS
 const httpLink = createHttpLink({
@@ -109,6 +110,7 @@ function App() {
             <Route path="projects/editar/:_id" element={<EditarProjects />} />
                 <Route path="inscriptions" element={<Inscriptions />} />
                 <Route path="avances" element={<Avances />} />
+                <Route path="avances/nuevo" element={<NuevoAvance />} />
                 {/* <Route path="*" element={<NotFoundPage />} /> */}
               </Route>
               {/* AUTH */}

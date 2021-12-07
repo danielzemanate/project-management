@@ -147,7 +147,9 @@ const AccordionStyled = styled((props) => <Accordion {...props} />)(({ theme }) 
       <div className='mx-5 my-4 bg-gray-50 p-8 rounded-lg flex flex-col items-center justify-center shadow-xl'>
         <div className='text-lg font-bold'>{tipo}</div>
         <div>{descripcion}</div>
-          <div>Editar</div>
+          <PrivateComponent roleList={['ADMINISTRADOR']}>
+            <div>Editar</div>
+          </PrivateComponent>
       </div>
     );
   };

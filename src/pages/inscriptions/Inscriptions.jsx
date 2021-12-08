@@ -64,9 +64,9 @@ const Inscriptions = () => {
   const Inscripcion = ({ inscripcion, refetch }) => {
     const [aprobarInscripcion, { data, loading, error }] = useMutation(APROBAR_INSCRIPCION);
     const [rechazarInscripcion, { data_rechazar, loading_rechazar, error_rechazar }] = useMutation(RECHAZAR_INSCRIPCION);
-    
-    
-  
+
+
+
     useEffect(() => {
       if (data) {
         toast.success('Inscripcion aprobada con exito');
@@ -80,7 +80,7 @@ const Inscriptions = () => {
         refetch();
       }
     }, [data_rechazar]);
-  
+
     useEffect(() => {
       if (error) {
         toast.error('Error aprobando la inscripcion');
@@ -92,20 +92,23 @@ const Inscriptions = () => {
         toast.error('Error rechazando la inscripcion');
       }
     }, [error_rechazar]);
-  
+
     const cambiarEstadoInscripcion = () => {
       aprobarInscripcion({
         variables: {
           aprobarInscripcionId: inscripcion._id,
         },
       });
+    };
+
+    const cambiarEstadoRechazado = () => {
       rechazarInscripcion({
         variables: {
           rechazarInscripcionId: inscripcion._id,
         },
-      });
-    };
-  
+    });
+  };
+
     return (
       <div className='bg-gray-900 text-gray-50 flex flex-col p-6 m-2 rounded-lg shadow-xl'>
         <span>Proyecto: {inscripcion.proyecto.nombre}</span>
@@ -128,7 +131,7 @@ const Inscriptions = () => {
           {inscripcion.estado === 'PENDIENTE' && (
           <ButtonLoading
             onClick={() => {
-              cambiarEstadoInscripcion();
+              cambiarEstadoRechazado();
             }}
             text='Rechazar Inscripcion'
             loading={loading}
@@ -138,5 +141,4 @@ const Inscriptions = () => {
       </div>
     );
   };
-
 export default Inscriptions

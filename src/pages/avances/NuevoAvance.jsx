@@ -47,8 +47,8 @@ const NuevoAvance = () => {
     console.log(dataAvance);
     if (dataAvance) {
       const la = {};
-      dataAvance.Avances.forEach((elemento) => {
-        la[elemento._id] = elemento._id;
+      dataAvance.Avances.forEach((avance) => {
+        la[avance._id] = avance._id;
       });
 
       setListaAvance(la);

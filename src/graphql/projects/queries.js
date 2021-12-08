@@ -70,4 +70,6 @@ query Usuario($_id: String!) {
 }
 `;
 
+
+
 export {GET_PROYECTOS, GET_PROYECTO};

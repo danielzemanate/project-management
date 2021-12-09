@@ -8,7 +8,6 @@ import iconProject from "assets/images/iconProject.png";
 import iconProjectBg from "assets/images/iconProjectBg.png";
 import iconInscriptions from "assets/images/iconInscriptions.png";
 import iconInscriptionsBg from "assets/images/iconInscriptionsBg.png";
-
 const LandingAdmin = () => {
   // DATOS DE USUARIO LOGUEADO
   const { userData } = useUser();

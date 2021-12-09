@@ -1,38 +1,45 @@
-
-import React, { useState } from 'react';
+import React, { useState, useEffect } from "react";
 import {
   Collapse,
   Navbar,
   NavbarToggler,
-  NavbarBrand,
   Nav,
   UncontrolledDropdown,
   DropdownToggle,
   DropdownMenu,
   DropdownItem,
-} from 'reactstrap'
-import { Link } from 'react-router-dom';
-import { useAuth } from 'context/authContext';
+} from "reactstrap";
+import { Link } from "react-router-dom";
+import { useAuth } from "context/authContext";
+import { useUser } from "context/userContext";
 
 // import logo from 'assets/images/logo1.png'
-import user from 'assets/images/user.png'
+import user from "assets/images/user.png";
 // import SidebarResponsive from './SidebarResponsivePl';
 
 const NavbarPrivateLayout = () => {
-
   const [isOpen, setIsOpen] = useState(false);
   const { setToken } = useAuth();
-
+  const { userData } = useUser();
+  const [username, setUsername] = useState("");
 
   //CERRAR SESION Y BORRAR TOKEN
   const cerrarSesion = () => {
-    console.log('eliminar token');
+    // console.log('eliminar token');
     setToken(null);
-  }
+  };
 
-//   useEffect(() => {
-//     console.log(user)
-// }, [user])
+  useEffect(() => {
+    if (userData._id) {
+      const firstName = userData.nombre.split(" ");
+      setUsername(firstName[0]);
+      // console.log(userData)
+    } else {
+      setUsername("NN");
+    }
+  }, [userData]);
+
+  // const username= userData.nombre.split(' ')
 
   const toggle = () => setIsOpen(!isOpen);
 
@@ -42,31 +49,38 @@ const NavbarPrivateLayout = () => {
         {/* <SidebarResponsive/> */}
         {/* <NavbarBrand className="navbarBrand" href="/landingAdmin">
         <img width="80" className="px-1" src={logo} alt=""></img>ADMINISTRADOR</NavbarBrand> */}
-        <NavbarBrand className="navbar-Brand hidden md:flex lg:flex sm:hidden text-4xl mb-2 font-semibold leading-tight" href="/admin/landingAdmin">
+        <Link to="/admin/landingAdmin">
+          <div className="navbar-Brand hidden md:flex lg:flex sm:hidden text-4xl mb-2 font-semibold leading-tight">
             {/* <img width="90" className="px-2 d-inline-block " src={logo} alt=""/> */}
-            <h3 className='text-white shadow-md m-4'>GESTIÓN DE PROYECTOS</h3>
-        </NavbarBrand>
-        <NavbarBrand className="navbar-Brand flex md:hidden text-2xl mb-2 font-semibold leading-tight" href="/admin/landingAdmin">
+            <h3 className="text-white shadow-md m-4">GESTIÓN DE PROYECTOS</h3>
+          </div>
+        </Link>
+        <Link to="/admin/landingAdmin">
+          <div className="navbar-Brand flex md:hidden text-2xl mb-2 font-semibold leading-tight">
             {/* <img width="90" className="px-2 d-inline-block " src={logo} alt=""/> */}
-            <h1 className='text-white'>GESTIÓN DE PROYECTOS</h1>
-        </NavbarBrand>
-        <NavbarToggler onClick={toggle} className= 'bg-white text-black' />
+            <h1 className="text-white">GESTIÓN DE PROYECTOS</h1>
+          </div>
+        </Link>
+        <NavbarToggler onClick={toggle} className="bg-white text-black" />
         <Collapse isOpen={isOpen} navbar>
           <Nav className="ms-auto" navbar>
-          <img width="85" className="px-1 rounded-circle" src={user}  alt=""/>
+            <img width="85" className="px-1 rounded-circle" src={user} alt="" />
             <UncontrolledDropdown nav inNavbar>
-              <DropdownToggle className='text-lg font-semibold text-white border-b-2 border-white' nav caret>
-                DANIEL
+              <DropdownToggle
+                className="text-lg font-semibold text-white border-b-2 border-white"
+                nav
+                caret
+              >
+                {username}
+                {/* DANIEL */}
               </DropdownToggle>
-              <DropdownMenu right>
-                <DropdownItem>
-                  Mi Perfil
-                </DropdownItem>
-                <DropdownItem>
-                  Configuraciones
-                </DropdownItem>
+              <DropdownMenu end>
+                <Link to="/admin/profile">
+                  <DropdownItem>Perfil</DropdownItem>
+                </Link>
+                <DropdownItem>Configuraciones</DropdownItem>
                 <DropdownItem divider />
-                <Link to='/'>
+                <Link to="/">
                   <DropdownItem onClick={() => cerrarSesion()}>
                     Cerrar Sesión
                   </DropdownItem>
@@ -78,5 +92,5 @@ const NavbarPrivateLayout = () => {
       </Navbar>
     </div>
   );
-}
+};
 export default NavbarPrivateLayout;

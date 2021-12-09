@@ -31,10 +31,11 @@ import PrivateRoute from "components/PrivateRoute";
 import NuevoProyecto from "pages/projects/NuevoProyecto";
 import Avances from "pages/avances/Avances";
 import NuevoAvance from "pages/avances/NuevoAvance";
+import { Profile } from "pages/users/Profile";
 
 // CREATE HHTPLINK FROM QUERYS
 const httpLink = createHttpLink({
-  uri: 'http://localhost:4000/graphql',
+  uri: "http://localhost:4000/graphql",
   // uri: "https://servidor-gql-mintic-nuevo.herokuapp.com/graphql",
 });
 
@@ -82,6 +83,7 @@ function App() {
         identificacion: decoded.identificacion,
         correo: decoded.correo,
         rol: decoded.rol,
+        estado:decoded.estado
       });
     }
   }, [authToken]);
@@ -95,6 +97,7 @@ function App() {
               {/* RUTAS PRIVADAS */}
               <Route path="admin" element={<PrivateLayout />}>
                 <Route path="landingAdmin" element={<LandingAdmin />} />
+                <Route path="profile" element={<Profile />} />
                 <Route
                   path="users"
                   element={

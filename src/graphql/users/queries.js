@@ -25,6 +25,19 @@ const GET_USUARIO = gql`
       estado
       identificacion
       rol
+      proyectosLiderados{
+        _id
+      nombre
+      estado
+      fase
+      fechaInicio
+      fechaFin
+      presupuesto
+      objetivos {
+        tipo
+        descripcion
+      }
+      }
     }
   }
 `;

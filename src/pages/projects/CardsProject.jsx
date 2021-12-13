@@ -9,6 +9,7 @@ import { CREAR_INSCRIPCION } from "graphql/inscripciones/mutaciones";
 import DropDown from "components/Dropdown";
 import { Dialog } from "@mui/material";
 import { Enum_EstadoProyecto } from "utils/enum";
+import { Enum_FaseProyecto } from "utils/enum";
 import ButtonLoading from "components/ButtonLoading";
 import { EDITAR_PROYECTO } from "graphql/projects/mutation";
 import useFormData from "hooks/useFormData";
@@ -17,6 +18,7 @@ import ReactLoading from "react-loading";
 import { toast } from "react-toastify";
 import { useUser } from "context/userContext";
 import PrivateComponent from "components/PrivateComponent";
+import { GET_USUARIO } from "graphql/users/queries";
 
 const AccordionStyled = styled((props) => <Accordion {...props} />)(
   ({ theme }) => ({
@@ -35,16 +37,37 @@ const AccordionDetailsStyled = styled((props) => (
 }));
 
 const CardsProject = () => {
+  const { userData } = useUser();
+  const [dataUser, setDataUser] = useState("");
   const { data: queryData, loading, error } = useQuery(GET_PROYECTOS);
+
+  const {
+    data: queryDataUser,
+    error: queryError,
+    loading: queryLoading,
+  } = useQuery(GET_USUARIO, {
+    variables: { _id: userData._id },
+  });
+
+  useEffect(() => {
+    if (queryDataUser) {
+      setDataUser(queryDataUser.Usuario.proyectosLiderados);
+      // console.log("proyectos", queryDataUser.Usuario.proyectosLiderados);
+      // console.log(userData._id)
+    }
+  }, [queryDataUser, userData._id]);
 
   useEffect(() => {
     if (error) {
       console.log("Error", error);
     }
-  }, [error]);
+    if (queryError) {
+      console.log("Error", queryError);
+    }
+  }, [error, queryError]);
 
   //   LOADING PARA CARGAR PROYECTO
-  if (loading)
+  if (loading || queryLoading)
     return (
       <ReactLoading
         className=" flex w-50 justify-center text-center"
@@ -55,7 +78,7 @@ const CardsProject = () => {
       />
     );
 
-  if (queryData.Proyectos) {
+  if (queryData.Proyectos || dataUser) {
     return (
       <div className="p-10 flex flex-col">
         <div className="flex w-full items-center justify-center">
@@ -70,9 +93,22 @@ const CardsProject = () => {
             </button>
           </div>
         </PrivateComponent>
-        {queryData.Proyectos.map((proyecto, index) => {
+        {userData.rol === "LIDER" ? (
+          <>
+            {queryDataUser.Usuario.proyectosLiderados.map((proyecto, index) => {
+              return <AccordionProyecto key={index} proyecto={proyecto} />;
+            })}
+          </>
+        ) : (
+          <>
+            {queryData.Proyectos.map((proyecto, index) => {
+              return <AccordionProyecto key={index} proyecto={proyecto} />;
+            })}
+          </>
+        )}
+        {/* {queryDataUser.Usuario.proyectosLiderados.map((proyecto, index) => {
           return <AccordionProyecto key={index} proyecto={proyecto} />;
-        })}
+        })} */}
       </div>
     );
   }
@@ -81,7 +117,9 @@ const CardsProject = () => {
 };
 
 const AccordionProyecto = ({ proyecto }) => {
+  const { userData } = useUser();
   const [showDialog, setShowDialog] = useState(false);
+  const [showDialogFase, setShowDialogFase] = useState(false);
   return (
     <>
       <AccordionStyled>
@@ -96,29 +134,58 @@ const AccordionProyecto = ({ proyecto }) => {
         </AccordionSummaryStyled>
         <AccordionDetailsStyled>
           <PrivateComponent roleList={["ADMINISTRADOR", "LIDER"]}>
-            <i
-              className="mx-4 fas fa-pen text-yellow-600 hover:text-yellow-400"
+            {proyecto.fase === "TERMINADO" ? (
+              <></>
+            ) : (
+              <button
+                className="bg-red-700 text-white font-bold text-lg py-3 px-6 rounded-xl hover:bg-red-500 shadow-md my-2 disabled:opacity-50 disabled:bg-gray-700 mr-4"
+                onClick={() => {
+                  setShowDialog(true);
+                }}
+              >
+                Estado
+              </button>
+            )}
+            <button
+              className="bg-red-700 text-white font-bold text-lg py-3 px-6 rounded-xl hover:bg-red-500 shadow-md my-2 disabled:opacity-50 disabled:bg-gray-700"
+              onClick={() => {
+                setShowDialogFase(true);
+              }}
+            >
+              Fase
+            </button>
+            {/* <i
+              className="mx-4 fas fa-pen text-red-600 hover:text-red-400"
               onClick={() => {
                 setShowDialog(true);
               }}
-            />
+            /> */}
           </PrivateComponent>
           <PrivateComponent roleList={["ESTUDIANTE"]}>
-            <div className="flex">
-              <Link
-                to={`/admin/avances/nuevo/${proyecto._id}`}
-                className="mr-5"
-              >
-                <ButtonLoading disabled={false} text="CREAR AVANCE" />
-              </Link>
-              <InscripcionProyecto
-                idProyecto={proyecto._id}
-                estado={proyecto.estado}
-                inscripciones={proyecto.inscripciones}
-              />
-            </div>
+            {proyecto.fase === "TERMINADO" ? (
+              <></>
+            ) : (
+              <div className="flex">
+                <Link
+                  to={`/admin/avances/nuevo/${proyecto._id}`}
+                  className="mr-5"
+                >
+                  <ButtonLoading disabled={false} text="CREAR AVANCE" />
+                </Link>
+                <InscripcionProyecto
+                  idProyecto={proyecto._id}
+                  estado={proyecto.estado}
+                  inscripciones={proyecto.inscripciones}
+                />
+              </div>
+            )}
           </PrivateComponent>
-          <div>Liderado Por: {proyecto.lider.correo}</div>
+          {userData.rol === "LIDER" ? (
+            <></>
+          ) : (
+            <div>Liderado Por: {proyecto.lider.correo}</div>
+          )}
+          {/* <div>Liderado Por: {proyecto.lider.correo}</div> */}
           <div className="flex">
             {proyecto.objetivos.map((objetivo, index) => {
               return (
@@ -140,7 +207,74 @@ const AccordionProyecto = ({ proyecto }) => {
       >
         <FormEditProyecto _id={proyecto._id} />
       </Dialog>
+      <Dialog
+        open={showDialogFase}
+        onClose={() => {
+          setShowDialogFase(false);
+        }}
+      >
+        <FormEditFaseProyecto _id={proyecto._id} />
+      </Dialog>
     </>
+  );
+};
+
+// EDITA FASE PROYECTO
+const FormEditFaseProyecto = ({ _id }) => {
+  const { form, formData, updateFormData } = useFormData();
+  const [editarProyecto, { data: dataMutation, loading, error }] =
+    useMutation(EDITAR_PROYECTO);
+
+  const submitForm = (e) => {
+    e.preventDefault();
+    if (formData.fase === 'TERMINADO') {
+      editarProyecto({
+        variables: {
+          _id,
+          campos: {estado:'INACTIVO', ...formData},
+        },
+      });
+    } else {
+      editarProyecto({
+        variables: {
+          _id,
+          campos: {estado:'ACTIVO', ...formData},
+        },
+      });
+    }
+    
+  };
+
+  // EDICION PROYECTO CORRECTA
+  useEffect(() => {
+    if (dataMutation) {
+      toast.success("Fase Proyecto editado con éxito");
+    }
+  }, [dataMutation]);
+
+  useEffect(() => {
+    if (error) {
+      console.log("Error", error);
+    }
+  }, [error]);
+
+  return (
+    <div className="p-4">
+      <h1 className="font-bold">Modificar Fase del Proyecto</h1>
+      <form
+        ref={form}
+        onChange={updateFormData}
+        onSubmit={submitForm}
+        className="flex flex-col items-center"
+      >
+        <DropDown
+          label="Fase del Proyecto"
+          name="fase"
+          options={Enum_FaseProyecto}
+        />
+        <ButtonLoading disabled={false} loading={loading} text="Confirmar" />
+      </form>
+    </div>
   );
 };
 
@@ -159,13 +293,12 @@ const FormEditProyecto = ({ _id }) => {
     });
   };
 
- 
-// EDICION PROYECTO CORRECTA
-useEffect(() => {
-  if (dataMutation) {
-    toast.success("Proyecto agregado con éxito");
-  }
-}, [dataMutation]);
+  // EDICION PROYECTO CORRECTA
+  useEffect(() => {
+    if (dataMutation) {
+      toast.success("Proyecto agregado con éxito");
+    }
+  }, [dataMutation]);
 
   useEffect(() => {
     if (error) {
@@ -225,8 +358,9 @@ const InscripcionProyecto = ({ idProyecto, estado, inscripciones }) => {
 
   useEffect(() => {
     if (data) {
-      console.log(data);
+      // console.log(data);
       toast.success("inscripcion creada con exito");
+      setEstadoInscripcion("INSCRITO")
     }
   }, [data]);
 

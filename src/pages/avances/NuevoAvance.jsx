@@ -5,6 +5,7 @@ import { useParams, Link } from "react-router-dom";
 import ButtonLoading from "components/ButtonLoading";
 import useFormData from "hooks/useFormData";
 import { CREAR_AVANCE } from "graphql/avances/mutation";
+import { EDITAR_PROYECTO } from "graphql/projects/mutation";
 import { toast } from "react-toastify";
 import { useUser } from "context/userContext";
 
@@ -30,6 +31,9 @@ const NuevoAvance = () => {
     { data: mutationData, loading: mutationLoading, error: mutationError },
   ] = useMutation(CREAR_AVANCE);
 
+  const [editarProyecto, { data: dataMutation, loading, error }] =
+    useMutation(EDITAR_PROYECTO);
+
 
   const submitForm = (e) => {
     //VALIDACIONES
@@ -41,7 +45,13 @@ const NuevoAvance = () => {
     } else {
       e.preventDefault();
       crearAvance({
-        variables: {proyecto:_id, creadoPor:userData._id,...formData},
+        variables: {proyecto:_id, creadoPor:userData._id,fecha:date,...formData},
+      });
+      editarProyecto({
+        variables: {
+          _id,
+          campos: {fase:'DESARROLLO'},
+        },
       });
     }
     setValidated("was-validated");
@@ -54,11 +64,21 @@ const NuevoAvance = () => {
   }
 }, [mutationData]);
 
+//USEEFECT SUCCES EDIT PROYECTO
+useEffect(() => {
+  if (dataMutation) {
+    toast.success("Proyecto en fase de Desarrollo");
+  }
+}, [dataMutation])
+
 useEffect(() => {
   if (mutationError) {
-    toast.error("Error agregando el avance");
+    toast.error("Error agregando el avance", mutationError);
   }
-}, [mutationError]);
+  if (error) {
+    toast.error("Error editando el proyecto", error);
+  }
+}, [mutationError, error]);
 
 
   return (
@@ -90,7 +110,7 @@ useEffect(() => {
           defaultValue={date}
           disabled={true}
         />
-        <ButtonLoading text="Crear Avance" loading={mutationLoading} disabled={false} />
+        <ButtonLoading text="Crear Avance" loading={mutationLoading || loading} disabled={false} />
       </form>
     </div>
   );

@@ -75,8 +75,8 @@ const Login = () => {
 
   return (
     <>
-      <div className="max-w-md w-full space-y-8 pt-5">
-        <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">
+      <div className="max-w-md w-full space-y-8 pt-5" data-testid='login-page'>
+        <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900" >
           Inicia sesión en tu cuenta
         </h2>
         <form

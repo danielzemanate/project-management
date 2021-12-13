@@ -5,11 +5,9 @@ import { GET_PROYECTO } from 'graphql/projects/queries';
 import Input from 'components/Input';
 import { toast } from "react-toastify";
 import ButtonLoading from "components/ButtonLoading";
-import DropDown from "components/Dropdown";
 import useFormData from "hooks/useFormData";
 import ReactLoading from "react-loading";
 import { EDITAR_PROYECTO } from "graphql/projects/mutation";
-import { Enum_EstadoProyecto } from "utils/enum";
 
 const EditarProjects = () => {
 

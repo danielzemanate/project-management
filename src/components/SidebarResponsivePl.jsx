@@ -41,6 +41,12 @@ const SidebarResponsive = () => {
       iconActive: iconInscriptions,
       iconInactive: iconInscriptionsBg,
     },
+    {
+      ruta: "avances",
+      nombre: "Avances",
+      iconActive: iconProject,
+      iconInactive: iconProjectBg,
+    },
   ];
 
   const [showNavigation, setShowNavigation] = useState(false);

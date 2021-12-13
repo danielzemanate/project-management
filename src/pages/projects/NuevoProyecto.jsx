@@ -11,6 +11,7 @@ import { nanoid } from 'nanoid';
 import { ObjContext } from 'context/objContext';
 import { useObj } from 'context/objContext';
 import { CREAR_PROYECTO } from 'graphql/projects/mutation';
+import { toast } from "react-toastify";
 
 const NuevoProyecto = () => {
   const { form, formData, updateFormData } = useFormData();
@@ -25,7 +26,7 @@ const NuevoProyecto = () => {
     useMutation(CREAR_PROYECTO);
 
   useEffect(() => {
-    console.log(data);
+    // console.log(data);
     if (data) {
       const lu = {};
       data.Usuarios.forEach((elemento) => {
@@ -37,9 +38,22 @@ const NuevoProyecto = () => {
   }, [data]);
 
   useEffect(() => {
-    console.log('data mutation', mutationData);
+    if (mutationData) {
+     toast.success("Proyecto agregado con éxito")
+    }
   });
 
+  useEffect(() => {
+    if (error) {
+      console.log("Error", error);
+    }
+  }, [error]);
+
+  useEffect(() => {
+    if (mutationError) {
+      console.log("Error", mutationError);
+    }
+  }, [mutationError]);
   const submitForm = (e) => {
     e.preventDefault();
 
@@ -68,7 +82,7 @@ const NuevoProyecto = () => {
         <Input name='fechaFin' label='Fecha de Fin' required={true} type='date' />
         <DropDown label='Líder' options={listaUsuarios} name='lider' required={true} />
         <Objetivos />
-        <ButtonLoading text='Crear Proyecto' loading={false} disabled={false} />
+        <ButtonLoading text='Crear Proyecto' loading={mutationLoading} disabled={false} />
       </form>
     </div>
   );

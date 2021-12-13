@@ -27,6 +27,12 @@ const LandingAdmin = () => {
       iconActive: iconInscriptions,
       iconInactive: iconInscriptionsBg,
     },
+    {
+      ruta: "/admin/avances",
+      nombre: "Avances",
+      iconActive: iconProject,
+      iconInactive: iconProjectBg,
+    },
   ];
 
   //   useEffect(() => {
@@ -83,8 +89,8 @@ const LandingAdmin = () => {
                       <h2 className="hidden md:flex card-title text-3xl text-gray-900">
                         <b>Usuarios</b>
                       </h2>
-                       {/* RESPONSIVE */}
-                       <h2 className="md:hidden card-title text-xl text-gray-900">
+                      {/* RESPONSIVE */}
+                      <h2 className="md:hidden card-title text-xl text-gray-900">
                         <b>Usuarios</b>
                       </h2>
                       <div className="flex justify-center items-center text-center">

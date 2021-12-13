@@ -41,19 +41,21 @@ const PrivateLayout = () => {
 
   // MANEJO ERRORES
   useEffect(() => {
-   console.log('error', errorMutation)
-  }, [errorMutation])
+    if (errorMutation) {
+      console.log("error", errorMutation);
+    }
+  }, [errorMutation]);
 
-  if (loadingMutation || loadingAuth) 
-  return (
-    <ReactLoading
-      className=" flex w-50 justify-center text-center"
-      type="cylon"
-      color="#7d211d"
-      height={500}
-      width={300}
-    />
-  );
+  if (loadingMutation || loadingAuth)
+    return (
+      <ReactLoading
+        className=" flex w-50 justify-center text-center"
+        type="cylon"
+        color="#7d211d"
+        height={500}
+        width={300}
+      />
+    );
 
   return (
     <div className="flex h-full overflow-hidden">

@@ -17,7 +17,6 @@ import PrivateLayout from "layouts/PrivateLayout";
 import LandingAdmin from "pages/admin/LandingAdmin";
 import UsersAdmin from "pages/users/UsersAdmin";
 import EditUsers from "pages/users/EditUsers";
-import Projects from "pages/projects/Projects";
 import Inscriptions from "pages/inscriptions/Inscriptions";
 import AuthLayout from "layouts/AuthLayouth";
 import Register from "pages/auth/Register";
@@ -28,6 +27,9 @@ import { AuthContext } from "context/authContext";
 import { UserContext } from "context/userContext";
 import jwt_decode from "jwt-decode";
 import PrivateRoute from "components/PrivateRoute";
+import NuevoProyecto from "pages/projects/NuevoProyecto";
+import Avances from "pages/avances/Avances";
+import NuevoAvance from "pages/avances/NuevoAvance";
 import { Profile } from "pages/users/Profile";
 
 // CREATE HHTPLINK FROM QUERYS
@@ -80,7 +82,7 @@ function App() {
         identificacion: decoded.identificacion,
         correo: decoded.correo,
         rol: decoded.rol,
-        estado:decoded.estado
+        estado: decoded.estado,
       });
     }
   }, [authToken]);
@@ -104,13 +106,16 @@ function App() {
                   }
                 />
                 <Route path="users/edit/:_id" element={<EditUsers />} />
-                <Route path="projects" element={<Projects />} />
+                {/* <Route path="projects" element={<Projects />} /> */}
                 <Route path="cardsprojects" element={<CardsProject />} />
+                <Route path="cardsprojects/nuevo" element={<NuevoProyecto />} />
                 <Route
                   path="projects/editar/:_id"
                   element={<EditarProjects />}
                 />
                 <Route path="inscriptions" element={<Inscriptions />} />
+                <Route path="avances" element={<Avances />} />
+                <Route path="avances/nuevo/:_id" element={<NuevoAvance />} />
                 {/* <Route path="*" element={<NotFoundPage />} /> */}
               </Route>
               {/* AUTH */}

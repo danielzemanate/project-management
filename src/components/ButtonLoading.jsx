@@ -1,9 +1,10 @@
 import React from 'react';
 import ReactLoading from 'react-loading';
 
-const ButtonLoading = ({ disabled, loading, text }) => {
+const ButtonLoading = ({ disabled, loading, text, onClick = () => {} }) => {
   return (
     <button
+    onClick={onClick}
       disabled={disabled}
       type='submit'
       className='bg-red-700 text-white font-bold text-lg py-3 px-6 rounded-xl hover:bg-red-500 shadow-md my-2 disabled:opacity-50 disabled:bg-gray-700'>

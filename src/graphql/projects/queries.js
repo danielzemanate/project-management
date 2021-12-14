@@ -11,6 +11,7 @@ const GET_PROYECTOS = gql`
       estado
       fase
       objetivos {
+        _id
         descripcion
         tipo
       }

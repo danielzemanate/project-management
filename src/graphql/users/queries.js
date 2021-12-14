@@ -1,5 +1,4 @@
-
-import { gql } from '@apollo/client';
+import { gql } from "@apollo/client";
 
 const GET_USUARIOS = gql`
   query Usuarios {
@@ -25,18 +24,27 @@ const GET_USUARIO = gql`
       estado
       identificacion
       rol
-      proyectosLiderados{
+      proyectosLiderados {
         _id
-      nombre
-      estado
-      fase
-      fechaInicio
-      fechaFin
-      presupuesto
-      objetivos {
-        tipo
-        descripcion
+        nombre
+        estado
+        fase
+        fechaInicio
+        fechaFin
+        presupuesto
+        objetivos {
+          tipo
+          descripcion
+        }
       }
+      avancesCreados {
+        _id
+        descripcion
+        fecha
+        observaciones
+        proyecto {
+          nombre
+        }
       }
     }
   }

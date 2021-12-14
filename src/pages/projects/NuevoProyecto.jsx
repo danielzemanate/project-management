@@ -12,6 +12,7 @@ import { ObjContext } from 'context/objContext';
 import { useObj } from 'context/objContext';
 import { CREAR_PROYECTO } from 'graphql/projects/mutation';
 import { toast } from "react-toastify";
+import ReactLoading from "react-loading";
 
 const NuevoProyecto = () => {
   const { form, formData, updateFormData } = useFormData();
@@ -65,7 +66,15 @@ const NuevoProyecto = () => {
     });
   };
 
-  if (loading) return <div>...Loading</div>;
+  if (loading) return (
+    <ReactLoading
+      className=" flex w-50 justify-center text-center"
+      type="cylon"
+      color="#7d211d"
+      height={500}
+      width={300}
+    />
+  );;
 
   return (
     <div className='p-10 flex flex-col items-center'>

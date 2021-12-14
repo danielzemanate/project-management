@@ -100,7 +100,7 @@ function App() {
                 <Route
                   path="users"
                   element={
-                    <PrivateRoute roleList={["ADMINISTRADOR"]}>
+                    <PrivateRoute roleList={["ADMINISTRADOR","LIDER"]}>
                       <UsersAdmin />
                     </PrivateRoute>
                   }

@@ -37,7 +37,7 @@ export const SidebarPrivateLayout = () => {
       <Logo />
       <ul>
         {/* SE RENDERIZA CADA UNO DE LOS COMPONENTES DEL SIDEBAR */}
-        <PrivateComponent roleList={["ADMINISTRADOR"]}>
+        <PrivateComponent roleList={["ADMINISTRADOR","LIDER"]}>
           <SidebarRoute
             ruta="users"
             nombre="Usuarios"

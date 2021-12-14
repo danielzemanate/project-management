@@ -10,8 +10,9 @@ import DropDown from "components/Dropdown";
 import { Dialog } from "@mui/material";
 import { Enum_EstadoProyecto } from "utils/enum";
 import { Enum_FaseProyecto } from "utils/enum";
+import { Enum_TipoObjetivo } from "utils/enum";
 import ButtonLoading from "components/ButtonLoading";
-import { EDITAR_PROYECTO } from "graphql/projects/mutation";
+import { EDITAR_PROYECTO, ELIMINAR_OBJETIVO, EDITAR_OBJETIVO } from "graphql/projects/mutation";
 import useFormData from "hooks/useFormData";
 import { Link } from "react-router-dom";
 import ReactLoading from "react-loading";
@@ -19,6 +20,7 @@ import { toast } from "react-toastify";
 import { useUser } from "context/userContext";
 import PrivateComponent from "components/PrivateComponent";
 import { GET_USUARIO } from "graphql/users/queries";
+import Input from 'components/Input';
 
 const AccordionStyled = styled((props) => <Accordion {...props} />)(
   ({ theme }) => ({
@@ -36,10 +38,12 @@ const AccordionDetailsStyled = styled((props) => (
   backgroundColor: "#ccc",
 }));
 
+
+
 const CardsProject = () => {
   const { userData } = useUser();
   const [dataUser, setDataUser] = useState("");
-  const { data: queryData, loading, error } = useQuery(GET_PROYECTOS);
+  const { data: queryData, loading, error} = useQuery(GET_PROYECTOS);
 
   const {
     data: queryDataUser,
@@ -190,7 +194,9 @@ const AccordionProyecto = ({ proyecto }) => {
             {proyecto.objetivos.map((objetivo, index) => {
               return (
                 <Objetivo
-                  key={index}
+                  index={index}
+                  _id={objetivo._id}
+                  idProyecto={proyecto._id}
                   tipo={objetivo.tipo}
                   descripcion={objetivo.descripcion}
                 />
@@ -326,15 +332,111 @@ const FormEditProyecto = ({ _id }) => {
   );
 };
 
-const Objetivo = ({ tipo, descripcion }) => {
+//OBJETIVOS
+
+const Objetivo = ({ index, _id, idProyecto, tipo, descripcion }) => {
+  const [showEditDialog, setShowEditDialog] = useState(false);
+  const [eliminarObjetivo, { data: dataMutationEliminar, loading: eliminarLoading }] = useMutation(
+    ELIMINAR_OBJETIVO,
+    {
+      refetchQueries: [{ query: GET_PROYECTOS }],
+    }
+  );
+
+  useEffect(() => {
+    console.log('eliminar objetivo:', dataMutationEliminar);
+    if (dataMutationEliminar) {
+      toast.success('objetivo eliminado satisfactoriamente');
+    }
+  }, [dataMutationEliminar]);
+
+  const ejecutarEliminacion = () => {
+    eliminarObjetivo({ variables: { idProyecto, idObjetivo: _id } });
+  };
+
+  if (eliminarLoading)
+    return <ReactLoading data-testid='loading-in-button' type='spin' height={100} width={100} />;
   return (
-    <div className="mx-5 my-4 bg-gray-50 p-8 rounded-lg flex flex-col items-center justify-center shadow-xl">
-      <div className="text-lg font-bold">{tipo}</div>
+    <div className='mx-5 my-4 bg-gray-50 p-8 rounded-lg flex flex-col items-center justify-center shadow-xl'>
+      <div className='text-lg font-bold'>{tipo}</div>
       <div>{descripcion}</div>
-      <PrivateComponent roleList={["ADMINISTRADOR", "LIDER"]}>
-        <div>Editar</div>
-        <Link to="/admin/cardsprojects/nuevo">Crear nuevo proyecto</Link>
+      <PrivateComponent roleList={['ADMINISTRADOR', 'LIDER']}>
+        <div className='flex my-2'>
+          <i
+            onClick={() => setShowEditDialog(true)}
+            className='fas fa-pen mx-2 text-yellow-500 hover:text-yellow-200 cursor-pointer'
+          />
+          <i
+            onClick={ejecutarEliminacion}
+            className='fas fa-trash mx-2 text-red-500 hover:text-red-200 cursor-pointer'
+          />
+        </div>
+        <Dialog open={showEditDialog} onClose={() => setShowEditDialog(false)}>
+          <EditarObjetivo
+            descripcion={descripcion}
+            tipo={tipo}
+            index={index}
+            idProyecto={idProyecto}
+            setShowEditDialog={setShowEditDialog}
+          />
+        </Dialog>
       </PrivateComponent>
+    </div>
+  );
+};
+
+//EDITAR OBJETIVOS
+
+const EditarObjetivo = ({ descripcion, tipo, index, idProyecto, setShowEditDialog }) => {
+  const { form, formData, updateFormData } = useFormData();
+
+  const [editarObjetivo, { data: dataMutation, loading }] = useMutation(EDITAR_OBJETIVO, {
+    refetchQueries: [{ query: GET_PROYECTOS }],
+  });
+
+  useEffect(() => {
+    if (dataMutation) {
+      toast.success('Objetivo editado con exito');
+      setShowEditDialog(false);
+    }
+  }, [dataMutation, setShowEditDialog]);
+
+  const submitForm = (e) => {
+    e.preventDefault();
+    editarObjetivo({
+      variables: {
+        idProyecto,
+        indexObjetivo: index,
+        campos: formData,
+      },
+    }).catch((e) => {
+      console.log(e);
+      toast.error('Error editando el objetivo');
+    });
+  };
+  return (
+    <div className='p-4'>
+      <h1 className='text-2xl font-bold text-gray-900'>Editar Objetivo</h1>
+      <form ref={form} onChange={updateFormData} onSubmit={submitForm}>
+        <DropDown
+          label='Tipo de Objetivo'
+          name='tipo'
+          required={true}
+          options={Enum_TipoObjetivo}
+          defaultValue={tipo}
+        />
+        <Input
+          label='Descripcion del objetivo'
+          name='descripcion'
+          required={true}
+          defaultValue={descripcion}
+        />
+        <ButtonLoading
+          text='Confirmar'
+          disabled={Object.keys(formData).length === 0}
+          loading={loading}
+        />
+      </form>
     </div>
   );
 };

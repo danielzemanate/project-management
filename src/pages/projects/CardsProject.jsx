@@ -344,7 +344,6 @@ const Objetivo = ({ index, _id, idProyecto, tipo, descripcion }) => {
   );
 
   useEffect(() => {
-    console.log('eliminar objetivo:', dataMutationEliminar);
     if (dataMutationEliminar) {
       toast.success('objetivo eliminado satisfactoriamente');
     }

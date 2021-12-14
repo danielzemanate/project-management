@@ -34,6 +34,7 @@ const GET_USUARIO = gql`
       fechaFin
       presupuesto
       objetivos {
+        _id
         tipo
         descripcion
       }

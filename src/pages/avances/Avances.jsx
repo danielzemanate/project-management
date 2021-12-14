@@ -152,9 +152,9 @@ const AccordionAvance = ({ avance }) => {
               <li>fecha: {avance.fecha.split("T")[0]} </li>
               <li>descripcion: {avance.descripcion}</li>
               <li>Nombre de proyecto: {avance.proyecto.nombre}</li>
-              <PrivateComponent roleList={["LIDER", "ADMINISTRADOR"]}>
+              {/* <PrivateComponent roleList={["LIDER", "ADMINISTRADOR"]}>
                 <li>Creador por: {avance.creadoPor.nombre}</li>
-              </PrivateComponent>
+              </PrivateComponent> */}
               <li>
                 <h1 className="text-gray-900 text-3xl font-semibold pt-3">
                   OBSERVACIONES:

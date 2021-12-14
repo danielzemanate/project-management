@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 import iconUserBg from "assets/images/iconUserBg.png";
 import iconProject from "assets/images/iconProject.png";
 import iconProjectBg from "assets/images/iconProjectBg.png";
-import iconInscriptions from "assets/images/iconInscriptions.png";
+// import iconInscriptions from "assets/images/iconInscriptions.png";
 import iconInscriptionsBg from "assets/images/iconInscriptionsBg.png";
 const LandingAdmin = () => {
   // DATOS DE USUARIO LOGUEADO
@@ -21,12 +21,12 @@ const LandingAdmin = () => {
       iconActive: iconProject,
       iconInactive: iconProjectBg,
     },
-    {
-      ruta: "/admin/inscriptions",
-      nombre: "Inscripciones",
-      iconActive: iconInscriptions,
-      iconInactive: iconInscriptionsBg,
-    },
+    // {
+    //   ruta: "/admin/inscriptions",
+    //   nombre: "Inscripciones",
+    //   iconActive: iconInscriptions,
+    //   iconInactive: iconInscriptionsBg,
+    // },
     {
       ruta: "/admin/avances",
       nombre: "Avances",
@@ -81,7 +81,7 @@ const LandingAdmin = () => {
         <PrivateComponent roleList={["ADMINISTRADOR", "ESTUDIANTE", "LIDER"]}>
           <div className="d-flex flex-row justify-content-center align-items-center">
             {/* RUTA PRIVADA PARA BLOQUEAR LA OPCION DE USUARIOSPARA VENDEDORES */}
-            <PrivateComponent roleList={["ADMINISTRADOR"]}>
+            <PrivateComponent roleList={["ADMINISTRADOR", "LIDER"]}>
               <div className="p-4 d-flex justify-content-center">
                 <div className="card">
                   <Link className="link" to="/admin/users">
@@ -92,6 +92,26 @@ const LandingAdmin = () => {
                       {/* RESPONSIVE */}
                       <h2 className="md:hidden card-title text-xl text-gray-900">
                         <b>Usuarios</b>
+                      </h2>
+                      <div className="flex justify-center items-center text-center">
+                        <img
+                          src={iconInscriptionsBg}
+                          alt="Logo"
+                          className="sm:h-12 md:h-15 lg:h-20"
+                        />
+                      </div>
+                    </div>
+                  </Link>
+                </div>
+                <div className="card">
+                  <Link className="link" to="/admin/inscriptions">
+                    <div className="card-body">
+                      <h2 className="hidden md:flex card-title text-3xl text-gray-900">
+                        <b>Inscripciones</b>
+                      </h2>
+                      {/* RESPONSIVE */}
+                      <h2 className="md:hidden card-title text-xl text-gray-900">
+                        <b>Inscripciones</b>
                       </h2>
                       <div className="flex justify-center items-center text-center">
                         <img

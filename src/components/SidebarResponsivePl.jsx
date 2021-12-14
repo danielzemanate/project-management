@@ -35,12 +35,12 @@ const SidebarResponsive = () => {
       iconActive: iconProject,
       iconInactive: iconProjectBg,
     },
-    {
-      ruta: "inscriptions",
-      nombre: "Inscripciones",
-      iconActive: iconInscriptions,
-      iconInactive: iconInscriptionsBg,
-    },
+    // {
+    //   ruta: "inscriptions",
+    //   nombre: "Inscripciones",
+    //   iconActive: iconInscriptions,
+    //   iconInactive: iconInscriptionsBg,
+    // },
     {
       ruta: "avances",
       nombre: "Avances",
@@ -72,6 +72,12 @@ const SidebarResponsive = () => {
               nombre="Usuarios"
               icon={iconUser}
               iconInactive={iconUserBg}
+            />
+             <ResponsiveRoute
+              ruta="inscriptions"
+              nombre="Inscripciones"
+              icon={iconInscriptions}
+              iconInactive={iconInscriptionsBg}
             />
           </PrivateComponent>
           {routeSidebar.map((item, index) => (

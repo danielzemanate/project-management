@@ -77,7 +77,7 @@ const CardsProject = () => {
   }, [error, queryError]);
 
   //   LOADING PARA CARGAR PROYECTO
-  if (loading || queryLoading)
+  if (loading )
     return (
       <ReactLoading
         className=" flex w-50 justify-center text-center"

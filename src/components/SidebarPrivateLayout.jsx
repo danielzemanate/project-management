@@ -19,12 +19,12 @@ export const SidebarPrivateLayout = () => {
       iconActive: iconProject,
       iconInactive: iconProjectBg,
     },
-    {
-      ruta: "inscriptions",
-      nombre: "Inscripciones",
-      iconActive: iconInscriptions,
-      iconInactive: iconInscriptionsBg,
-    },
+    // {
+    //   ruta: "inscriptions",
+    //   nombre: "Inscripciones",
+    //   iconActive: iconInscriptions,
+    //   iconInactive: iconInscriptionsBg,
+    // },
     {
       ruta: "avances",
       nombre: "Avances",
@@ -43,6 +43,12 @@ export const SidebarPrivateLayout = () => {
             nombre="Usuarios"
             icon={iconUser}
             iconInactive={iconUserBg}
+          />
+          <SidebarRoute
+            ruta="inscriptions"
+            nombre="Inscripciones"
+            icon={iconInscriptions}
+            iconInactive={iconInscriptionsBg}
           />
         </PrivateComponent>
         {routeSidebar.map((item, index) => (

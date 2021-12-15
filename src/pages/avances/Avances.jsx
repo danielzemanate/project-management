@@ -312,7 +312,7 @@ const FormEditDescriptionAvance = ({ avance, setShowDialogEdit }) => {
             Introduzca una Descripción valida.
           </div>
         </label>
-        <ButtonLoading disabled={false} loading={loading} text="Confirmar" />
+        <ButtonLoading disabled={false} loading={loading} text="Confirmar"/>
       </form>
     </div>
   );

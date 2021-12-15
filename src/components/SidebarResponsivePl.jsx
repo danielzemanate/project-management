@@ -66,7 +66,7 @@ const SidebarResponsive = () => {
       {showNavigation && (
         <ul>
           {/* SE RENDERIZA CADA UNO DE LOS COMPONENTES DEL SIDEBAR */}
-          <PrivateComponent roleList={["ADMINISTRADOR"]}>
+          <PrivateComponent roleList={["ADMINISTRADOR","LIDER"]}>
             <ResponsiveRoute
               ruta="users"
               nombre="Usuarios"

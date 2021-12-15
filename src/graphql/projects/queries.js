@@ -18,6 +18,7 @@ const GET_PROYECTOS = gql`
       lider {
         _id
         correo
+        nombre
       }
       inscripciones {
         estado

@@ -38,10 +38,13 @@ const Register = () => {
       toast.error("Ingrese Todos los campos");
     } else {
       e.preventDefault();
-      // console.log("enviar datos al backend", formData);
-      // toast.success("Registro completo");
-      // navigate("/admin/landingAdmin");
-      await registro({ variables: formData });
+      await registro({ variables: formData })
+        .then((data) => {
+          console.log(data);
+        })
+        .catch((error) => {
+          console.log("error", error);
+        });
     }
     setValidated("was-validated");
   };
@@ -57,7 +60,7 @@ const Register = () => {
           navigate("/admin/landingAdmin");
         } else {
           toast.error("Error al registrarse");
-        } 
+        }
       } else {
         toast.error("Error al registrarse");
       }

@@ -42,6 +42,10 @@ const Login = () => {
       // console.log("enviar datos al backend", formData);
       login({
         variables: formData,
+      }).then((data) => {
+        console.log(data)
+      }).catch((error)=> {
+        console.log('error', error)
       });
     }
     setValidated("was-validated");

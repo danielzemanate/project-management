@@ -14,7 +14,7 @@ const Input = ({ label, name, defaultValue, type, required,disabled }) => {
         disabled={disabled}
       />
       <div className="valid-feedback" data-testid="test-html-input">Correcto!</div>
-      <div className="invalid-feedback">Introduzca un {name} valido.</div>
+      <div className="invalid-feedback" data-testid="test-html-input-invalido">Introduzca un {name} valido.</div>
     </label>
   );
 };

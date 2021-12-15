@@ -10,9 +10,9 @@ const PrivateRoute = ({ roleList, children }) => {
   }
 
      return (
-        <div className="w-100 flex flex-col justify-center items-center" data-testid='not-authorized'>
+        <div className="w-100 flex flex-col justify-center items-center">
             <div className='text-center pt-5'>
-                <h1 className='text-6xl text-red-900 font-bold'>SIN ACCESO A ESTE SITIO</h1>
+                <h1 className='text-6xl text-red-900 font-bold' data-testid='not-authorized'>SIN ACCESO A ESTE SITIO</h1>
             </div>
             <div className="d-flex flex-column align-items-center pt-5">
                 <h3 className='text-3xl font-semibold'>Volver al Perfil!</h3>

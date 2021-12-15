@@ -97,25 +97,37 @@ function App() {
               <Route path="admin" element={<PrivateLayout />}>
                 <Route path="landingAdmin" element={<LandingAdmin />} />
                 <Route path="profile" element={<Profile />} />
-                <Route
-                  path="users"
-                  element={
-                    <PrivateRoute roleList={["ADMINISTRADOR","LIDER"]}>
-                      <UsersAdmin />
-                    </PrivateRoute>
-                  }
-                />
-                <Route path="users/edit/:_id" element={<EditUsers />} />
-                {/* <Route path="projects" element={<Projects />} /> */}
-                <Route path="cardsprojects" element={<CardsProject />} />
-                <Route path="cardsprojects/nuevo" element={<NuevoProyecto />} />
-                <Route
-                  path="projects/editar/:_id"
-                  element={<EditarProjects />}
-                />
-                <Route path="inscriptions" element={<Inscriptions />} />
-                <Route path="avances" element={<Avances />} />
-                <Route path="avances/nuevo/:_id" element={<NuevoAvance />} />
+                {(userData.estado === "PENDIENTE" | userData.estado === "NO_AUTORIZADO") ? (
+                  <></>
+                ) : (
+                  <>
+                    <Route
+                      path="users"
+                      element={
+                        <PrivateRoute roleList={["ADMINISTRADOR", "LIDER"]}>
+                          <UsersAdmin />
+                        </PrivateRoute>
+                      }
+                    />
+                    <Route path="users/edit/:_id" element={<EditUsers />} />
+                    {/* <Route path="projects" element={<Projects />} /> */}
+                    <Route path="cardsprojects" element={<CardsProject />} />
+                    <Route
+                      path="cardsprojects/nuevo"
+                      element={<NuevoProyecto />}
+                    />
+                    <Route
+                      path="projects/editar/:_id"
+                      element={<EditarProjects />}
+                    />
+                    <Route path="inscriptions" element={<Inscriptions />} />
+                    <Route path="avances" element={<Avances />} />
+                    <Route
+                      path="avances/nuevo/:_id"
+                      element={<NuevoAvance />}
+                    />
+                  </>
+                )}
                 {/* <Route path="*" element={<NotFoundPage />} /> */}
               </Route>
               {/* AUTH */}

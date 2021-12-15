@@ -45,51 +45,66 @@ const NavbarPrivateLayout = () => {
 
   return (
     <div>
-      <Navbar light expand="md" className="navbarPl px-4 py-3">
-        {/* <SidebarResponsive/> */}
-        {/* <NavbarBrand className="navbarBrand" href="/landingAdmin">
+      {userData.estado === "NO_AUTORIZADO" ? (
+        <>
+          <Link to="/">
+            <button className='bg-red-700 text-white font-bold text-lg py-3 px-6 rounded-xl hover:bg-red-500 shadow-md my-2 mx-2' type='button' onClick={() => cerrarSesion()}>
+              Home
+            </button>
+          </Link>
+        </>
+      ) : (
+        <Navbar light expand="md" className="navbarPl px-4 py-3">
+          {/* <SidebarResponsive/> */}
+          {/* <NavbarBrand className="navbarBrand" href="/landingAdmin">
         <img width="80" className="px-1" src={logo} alt=""></img>ADMINISTRADOR</NavbarBrand> */}
-        <Link to="/admin/landingAdmin">
-          <div className="navbar-Brand hidden md:flex lg:flex sm:hidden text-4xl mb-2 font-semibold leading-tight">
-            {/* <img width="90" className="px-2 d-inline-block " src={logo} alt=""/> */}
-            <h3 className="text-white shadow-md m-4">GESTIÓN DE PROYECTOS</h3>
-          </div>
-        </Link>
-        <Link to="/admin/landingAdmin">
-          <div className="navbar-Brand flex md:hidden text-2xl mb-2 font-semibold leading-tight">
-            {/* <img width="90" className="px-2 d-inline-block " src={logo} alt=""/> */}
-            <h1 className="text-white">GESTIÓN DE PROYECTOS</h1>
-          </div>
-        </Link>
-        <NavbarToggler onClick={toggle} className="bg-white text-black" />
-        <Collapse isOpen={isOpen} navbar>
-          <Nav className="ms-auto" navbar>
-            <img width="85" className="px-1 rounded-circle" src={user} alt="" />
-            <UncontrolledDropdown nav inNavbar>
-              <DropdownToggle
-                className="text-lg font-semibold text-white border-b-2 border-white"
-                nav
-                caret
-              >
-                {username}
-                {/* DANIEL */}
-              </DropdownToggle>
-              <DropdownMenu end>
-                <Link to="/admin/profile">
-                  <DropdownItem>Perfil</DropdownItem>
-                </Link>
-                <DropdownItem>Configuraciones</DropdownItem>
-                <DropdownItem divider />
-                <Link to="/">
-                  <DropdownItem onClick={() => cerrarSesion()}>
-                    Cerrar Sesión
-                  </DropdownItem>
-                </Link>
-              </DropdownMenu>
-            </UncontrolledDropdown>
-          </Nav>
-        </Collapse>
-      </Navbar>
+          <Link to="/admin/landingAdmin">
+            <div className="navbar-Brand hidden md:flex lg:flex sm:hidden text-4xl mb-2 font-semibold leading-tight">
+              {/* <img width="90" className="px-2 d-inline-block " src={logo} alt=""/> */}
+              <h3 className="text-white shadow-md m-4">GESTIÓN DE PROYECTOS</h3>
+            </div>
+          </Link>
+          <Link to="/admin/landingAdmin">
+            <div className="navbar-Brand flex md:hidden text-2xl mb-2 font-semibold leading-tight">
+              {/* <img width="90" className="px-2 d-inline-block " src={logo} alt=""/> */}
+              <h1 className="text-white">GESTIÓN DE PROYECTOS</h1>
+            </div>
+          </Link>
+          <NavbarToggler onClick={toggle} className="bg-white text-black" />
+          <Collapse isOpen={isOpen} navbar>
+            <Nav className="ms-auto" navbar>
+              <img
+                width="85"
+                className="px-1 rounded-circle"
+                src={user}
+                alt=""
+              />
+              <UncontrolledDropdown nav inNavbar>
+                <DropdownToggle
+                  className="text-lg font-semibold text-white border-b-2 border-white"
+                  nav
+                  caret
+                >
+                  {username}
+                  {/* DANIEL */}
+                </DropdownToggle>
+                <DropdownMenu end>
+                  <Link to="/admin/profile">
+                    <DropdownItem>Perfil</DropdownItem>
+                  </Link>
+                  <DropdownItem>Configuraciones</DropdownItem>
+                  <DropdownItem divider />
+                  <Link to="/">
+                    <DropdownItem onClick={() => cerrarSesion()}>
+                      Cerrar Sesión
+                    </DropdownItem>
+                  </Link>
+                </DropdownMenu>
+              </UncontrolledDropdown>
+            </Nav>
+          </Collapse>
+        </Navbar>
+      )}
     </div>
   );
 };

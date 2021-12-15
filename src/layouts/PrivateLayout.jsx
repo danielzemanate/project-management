@@ -10,8 +10,11 @@ import { useAuth } from "context/authContext";
 import { REFRESH_TOKEN } from "graphql/auth/mutations";
 import { useNavigate } from "react-router-dom";
 import ReactLoading from "react-loading";
+import { useUser } from "context/userContext";
 
 const PrivateLayout = () => {
+  // DATOS DE USUARIO LOGUEADO
+  const { userData } = useUser();
   const navigate = useNavigate();
   const { setToken } = useAuth();
   const [loadingAuth, setLoadingAuth] = useState(true);
@@ -59,8 +62,15 @@ const PrivateLayout = () => {
 
   return (
     <div className="flex h-full overflow-hidden">
-      <SidebarPrivateLayout />
-      <SidebarResponsive />
+      {(userData.estado === "PENDIENTE") |
+      (userData.estado === "NO_AUTORIZADO") ? (
+        <></>
+      ) : (
+        <>
+          <SidebarPrivateLayout />
+          <SidebarResponsive />
+        </>
+      )}
       <div className="content w-100">
         <NavbarPrivateLayout />
         <div className="w-full h-full usersAdmin">

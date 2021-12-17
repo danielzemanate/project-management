@@ -55,7 +55,7 @@ export const Profile = () => {
       <Link to="/admin/users">
         <i className="fas fa-arrow-left text-gray-600 cursor-pointer font-bold text-xl hover:text-gray-900" />
       </Link>
-      <h1 className="m-4 text-4xl text-gray-800 font-bold text-center">
+      <h1 className="m-4 text-4xl text-gray-800 font-bold text-center" data-testid='perfil'>
         DATOS PERSONALES
       </h1>
       <FormUpdateProfile dataUser={dataUser} />
@@ -124,6 +124,7 @@ const FormUpdateProfile = ({ dataUser }) => {
           name="nombre"
           defaultValue={dataUser.nombre}
           required={true}
+          data-testid='name-input'
         />
         <Input
           label="Apellido:"
@@ -148,6 +149,7 @@ const FormUpdateProfile = ({ dataUser }) => {
         />
         <span className="mb-2 text-xl font-semibold">Rol: {dataUser.rol}</span>
         <ButtonLoading
+          data-testid='buttonLoading'
           disabled={Object.keys(formData).length === 0}
           loading={mutationLoading}
           text="Confirmar"

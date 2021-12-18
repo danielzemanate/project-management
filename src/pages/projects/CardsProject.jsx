@@ -111,7 +111,7 @@ const CardsProject = () => {
         {userData.rol === "LIDER" ? (
           <>
             {queryDataUser.Usuario.proyectosLiderados.map((proyecto, index) => {
-              return <AccordionProyecto key={index} proyecto={proyecto} />;
+              return <AccordionProyecto key={index} proyecto={proyecto}/>;
             })}
           </>
         ) : (

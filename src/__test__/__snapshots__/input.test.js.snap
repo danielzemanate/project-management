@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`loads the svg html when loading is activated 1`] = `
+<input
+  class="input px-3 form-control"
+  data-testid="input-test"
+  value=""
+/>
+`;

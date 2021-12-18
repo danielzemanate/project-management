@@ -60,15 +60,6 @@ export const Profile = () => {
       >
         DATOS PERSONALES
       </h1>
-      <input placeholder="nombre" name="name" data-testid="name-input" />
-      <Input
-        label="Nombre:"
-        type="text"
-        name="nombre"
-        defaultValue={queryData.Usuario.nombre}
-        required={true}
-        aria-label="input-nombre"
-      />
       <FormUpdateProfile dataUser={dataUser} />
     </div>
   );
@@ -129,13 +120,14 @@ const FormUpdateProfile = ({ dataUser }) => {
         className={`${validated} flex flex-col items-center justify-center needs-validation`}
         noValidate
       >
+        <input placeholder="nombre" name="name" data-testid="name-input" />
         <Input
           label="Nombre:"
           type="text"
           name="nombre"
           defaultValue={dataUser.nombre}
           required={true}
-          // data-testid="name-input"
+          aria-label="input-nombre"
         />
         <Input
           label="Apellido:"

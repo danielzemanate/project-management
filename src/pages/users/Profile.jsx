@@ -14,7 +14,7 @@ export const Profile = () => {
   const { userData } = useUser();
   const [dataUser, setDataUser] = useState("");
   // CONSULTA USUARIO POR ID
-  
+
   const {
     data: queryData,
     error: queryError,
@@ -22,7 +22,6 @@ export const Profile = () => {
   } = useQuery(GET_USUARIO, {
     variables: { _id: userData._id },
   });
-
 
   useEffect(() => {
     if (queryData) {
@@ -55,9 +54,21 @@ export const Profile = () => {
       <Link to="/admin/users">
         <i className="fas fa-arrow-left text-gray-600 cursor-pointer font-bold text-xl hover:text-gray-900" />
       </Link>
-      <h1 className="m-4 text-4xl text-gray-800 font-bold text-center" data-testid='perfil'>
+      <h1
+        className="m-4 text-4xl text-gray-800 font-bold text-center"
+        data-testid="perfil"
+      >
         DATOS PERSONALES
       </h1>
+      <input placeholder="nombre" name="name" data-testid="name-input" />
+      <Input
+        label="Nombre:"
+        type="text"
+        name="nombre"
+        defaultValue={queryData.Usuario.nombre}
+        required={true}
+        aria-label="input-nombre"
+      />
       <FormUpdateProfile dataUser={dataUser} />
     </div>
   );
@@ -124,7 +135,7 @@ const FormUpdateProfile = ({ dataUser }) => {
           name="nombre"
           defaultValue={dataUser.nombre}
           required={true}
-          data-testid='name-input'
+          // data-testid="name-input"
         />
         <Input
           label="Apellido:"
@@ -149,7 +160,7 @@ const FormUpdateProfile = ({ dataUser }) => {
         />
         <span className="mb-2 text-xl font-semibold">Rol: {dataUser.rol}</span>
         <ButtonLoading
-          data-testid='buttonLoading'
+          data-testid="buttonLoading"
           disabled={Object.keys(formData).length === 0}
           loading={mutationLoading}
           text="Confirmar"

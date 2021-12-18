@@ -53,7 +53,7 @@ const authLink = setContext((_, { headers }) => {
 // CLIENTE APOLLO CONFIG
 const client = new ApolloClient({
   // uri: "http://localhost:4000/graphql",
-  // uri: "https://servidor-gql-mintic-nuevo.herokuapp.com/graphql",
+  uri: "https://servidor-gql-mintic-nuevo.herokuapp.com/graphql",
   link: authLink.concat(httpLink),
   cache: new InMemoryCache(),
 });
@@ -97,7 +97,8 @@ function App() {
               <Route path="admin" element={<PrivateLayout />}>
                 <Route path="landingAdmin" element={<LandingAdmin />} />
                 <Route path="profile" element={<Profile />} />
-                {(userData.estado === "PENDIENTE" | userData.estado === "NO_AUTORIZADO") ? (
+                {(userData.estado === "PENDIENTE") |
+                (userData.estado === "NO_AUTORIZADO") ? (
                   <></>
                 ) : (
                   <>
